@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f8fc">
+  <meta name="theme-color" content="#FAF8F5">
   <meta name="description" content="Portfolio of Annsu Choudhary, a computer science (AI) undergraduate building web apps, intelligent models, and reliable systems.">
   <title>Annsu Choudhary — Software Engineering • Web • Applied AI</title>
   <script>
     try {
-      if (localStorage.getItem("portfolio-theme") === "dark") {
-        document.documentElement.classList.add("dark");
-      }
+      const savedTheme = localStorage.getItem("theme");
+      document.documentElement.classList.toggle("dark", savedTheme === "dark");
     } catch (error) {
-      // The page remains in light mode if browser storage is unavailable.
+      document.documentElement.classList.remove("dark");
+      console.warn("Unable to read the saved color theme.", error);
     }
   </script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -75,47 +75,66 @@
     </nav>
   </header>
 
+  <svg class="hidden" aria-hidden="true" focusable="false">
+    <symbol id="social-github" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.08c-3.1.68-3.76-1.32-3.76-1.32-.5-1.3-1.24-1.64-1.24-1.64-1.02-.7.08-.69.08-.69 1.12.08 1.7 1.15 1.7 1.15 1 1.7 2.62 1.21 3.26.93.1-.73.39-1.21.71-1.49-2.48-.28-5.09-1.24-5.09-5.52 0-1.22.44-2.21 1.15-2.99-.12-.28-.5-1.42.11-2.95 0 0 .94-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.11-1.44 3.05-1.14 3.05-1.14.61 1.53.23 2.67.11 2.95.72.78 1.15 1.77 1.15 2.99 0 4.29-2.62 5.24-5.11 5.51.4.35.76 1.03.76 2.08v3.07c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/>
+    </symbol>
+    <symbol id="social-linkedin" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52c0-.84-.69-1.52-1.55-1.52ZM7.93 18.45H4.98V9h2.95v9.45ZM6.45 7.71a1.71 1.71 0 1 1 0-3.42 1.71 1.71 0 0 1 0 3.42Zm12 10.74H15.5v-4.6c0-1.1-.02-2.52-1.54-2.52-1.54 0-1.78 1.2-1.78 2.44v4.68H9.23V9h2.83v1.29h.04c.39-.74 1.36-1.52 2.8-1.52 3 0 3.55 1.97 3.55 4.53v5.15Z"/>
+    </symbol>
+    <symbol id="social-leetcode" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M15.1 3.1a1.25 1.25 0 0 1 1.77 0l4.04 4.04a1.25 1.25 0 0 1-1.77 1.77L15.1 4.87a1.25 1.25 0 0 1 0-1.77ZM10.3 4.2a1.15 1.15 0 0 1 1.63 1.62l-6.1 6.1a4.06 4.06 0 0 0 0 5.74 4.06 4.06 0 0 0 5.74 0l1.73-1.73a1.15 1.15 0 0 1 1.63 1.63l-1.73 1.73a6.36 6.36 0 0 1-8.99-8.99l6.09-6.1Zm2.05 6.58h7.1a1.15 1.15 0 1 1 0 2.3h-7.1a1.15 1.15 0 1 1 0-2.3Z"/>
+    </symbol>
+    <symbol id="social-codechef" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M7.1 8.15a4.9 4.9 0 0 1 9.8 0h1.3a3 3 0 0 1 0 6h-.6v3.6a2 2 0 0 1-2 2H8.4a2 2 0 0 1-2-2v-3.6h-.6a3 3 0 0 1 0-6h1.3Zm2.3 0h5.2a2.6 2.6 0 0 0-5.2 0Zm-3.6 2.3a.7.7 0 0 0 0 1.4h.6v-1.4h-.6Zm12.4 0h-.6v1.4h.6a.7.7 0 0 0 0-1.4ZM9 15.1a1 1 0 0 1 1 1v1.1h4v-1.1a1 1 0 1 1 2 0v1.1h1.4V9.85H6.6v7.35H8V16.1a1 1 0 0 1 1-1Z"/>
+    </symbol>
+    <symbol id="social-hackerrank" viewBox="0 0 24 24">
+      <path fill="currentColor" d="m12 1 9.53 5.5v11L12 23 2.47 17.5v-11L12 1Zm0 2.3L4.46 7.65v8.7L12 20.7l7.54-4.35v-8.7L12 3.3Zm-3.7 3.9h2.1v4h3.2v-4h2.1v9.6h-2.1v-3.7h-3.2v3.7H8.3V7.2Z"/>
+    </symbol>
+  </svg>
+
   <main>
     <section id="home" class="relative isolate overflow-hidden px-5 pb-20 pt-32 sm:pt-40 lg:px-8 lg:pb-24">
       <div class="dot-grid absolute inset-x-0 top-0 -z-10 h-[680px]"></div>
       <div class="absolute -right-32 top-28 -z-10 h-80 w-80 rounded-full bg-indigo-200/40 blur-3xl dark:bg-indigo-900/20"></div>
       <div class="mx-auto max-w-7xl">
-        <div class="max-w-4xl">
+        <div class="hero-layout">
+          <div class="hero-copy">
           <div class="mono mb-6 inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-white/80 px-4 py-2 text-[11px] font-medium uppercase tracking-[.12em] text-indigo-700 shadow-sm dark:border-indigo-900 dark:bg-slate-900/80 dark:text-indigo-300">
-            <span class="h-2 w-2 rounded-full bg-emerald-500"></span> Software Engineering <span class="text-slate-400">•</span> Web <span class="text-slate-400">•</span> Applied AI
+            <span class="h-2 w-2 rounded-full bg-emerald-500"></span> SOFTWARE ENGINEERING <span class="text-slate-400">•</span> WEB <span class="text-slate-400">•</span> APPLIED AI
           </div>
-          <h1 class="max-w-4xl text-5xl font-extrabold leading-[1.07] tracking-[-.055em] text-slate-950 sm:text-6xl lg:text-7xl dark:text-white">Structured code.<br><span class="text-indigo-600 dark:text-indigo-400">Creative execution.</span></h1>
+          <h1 class="hero-name">ANNSU<br>CHOUDHARY</h1>
+          <p class="hero-headline">Structured code.<br><span>Creative execution.</span></p>
           <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl dark:text-slate-300">Hi, I'm Annsu Choudhary—a CS (AI) undergrad who enjoys taking messy, real-world problems and shipping fast web apps, intelligent models, and reliable systems.</p>
           <div class="mt-9 flex flex-col gap-3 sm:flex-row">
             <a href="#projects" class="inline-flex items-center justify-center rounded-full bg-indigo-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-indigo-600/20 transition hover:-translate-y-0.5 hover:bg-indigo-700">Explore Projects <span aria-hidden="true" class="ml-2">↓</span></a>
             <a href="Annsu%20Sep%20Resume.pdf" download="Annsu_Choudhary_Resume.pdf" class="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white/80 px-6 py-3.5 text-sm font-bold text-slate-800 transition hover:-translate-y-0.5 hover:border-indigo-400 dark:border-slate-700 dark:bg-slate-900/80 dark:text-white">Download Resume <span aria-hidden="true" class="ml-2">↗</span></a>
             <a href="#contact" class="inline-flex items-center justify-center rounded-full px-5 py-3.5 text-sm font-bold text-slate-600 transition hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-300">Get in Touch <span aria-hidden="true" class="ml-2">→</span></a>
           </div>
-          <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-slate-500 dark:text-slate-400" aria-label="Profile links">
+          <div class="mt-8 flex flex-wrap items-center gap-3 text-sm text-slate-500 dark:text-slate-400" role="group" aria-label="Find me on">
             <span class="mono text-xs uppercase tracking-widest">Find me on</span>
-            <a class="social-link" href="https://github.com/AnnsuChoudhary" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
-            <a class="social-link" href="https://www.linkedin.com/in/annsu-choudhary-1b8775297" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
-            <a class="social-link" href="https://leetcode.com/u/annsuchoudhary/" target="_blank" rel="noopener noreferrer">LeetCode <span aria-hidden="true">↗</span></a>
-            <a class="social-link" href="https://www.codechef.com/users/annsu" target="_blank" rel="noopener noreferrer">CodeChef <span aria-hidden="true">↗</span></a>
-            <a class="social-link" href="https://www.hackerrank.com/profile/annsuchoudhary21" target="_blank" rel="noopener noreferrer">HackerRank <span aria-hidden="true">↗</span></a>
+            <a class="social-link" href="https://github.com/AnnsuChoudhary" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#social-github"></use></svg></a>
+            <a class="social-link" href="https://www.linkedin.com/in/annsu-choudhary-1b8775297" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#social-linkedin"></use></svg></a>
+            <a class="social-link" href="https://leetcode.com/u/annsuchoudhary/" target="_blank" rel="noopener noreferrer" aria-label="LeetCode" title="LeetCode"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#social-leetcode"></use></svg></a>
+            <a class="social-link" href="https://www.codechef.com/users/annsu" target="_blank" rel="noopener noreferrer" aria-label="CodeChef" title="CodeChef"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#social-codechef"></use></svg></a>
+            <a class="social-link" href="https://www.hackerrank.com/profile/annsuchoudhary21" target="_blank" rel="noopener noreferrer" aria-label="HackerRank" title="HackerRank"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#social-hackerrank"></use></svg></a>
           </div>
+          </div>
+          <figure class="hero-portrait">
+            <img src="Annsu.png" alt="Annsu Choudhary" fetchpriority="high">
+            <figcaption class="portrait-note"><span class="mono">CURRENTLY</span><br>building things that matter.</figcaption>
+          </figure>
         </div>
 
-        <div class="mt-16 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" aria-label="Highlights">
-          <article class="rounded-2xl border border-slate-200/80 bg-white/75 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/70">
-            <span class="mono text-xs text-indigo-600 dark:text-indigo-400">01 / RECOGNITION</span><p class="mt-3 font-semibold leading-6">Top 3 SheBuilds Hackathon &amp; Sponsor Track Winner</p>
-          </article>
-          <article class="rounded-2xl border border-slate-200/80 bg-white/75 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/70">
-            <span class="mono text-xs text-indigo-600 dark:text-indigo-400">02 / COMPETITION</span><p class="mt-3 font-semibold leading-6">World Computer Hackers League National Cleared &amp; Regionalist</p>
-          </article>
-          <article class="rounded-2xl border border-slate-200/80 bg-white/75 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/70">
-            <span class="mono text-xs text-indigo-600 dark:text-indigo-400">03 / COMMUNITY</span><p class="mt-3 font-semibold leading-6">Open Source Contributor <span class="text-sm font-normal text-slate-500 dark:text-slate-400">(ECSOC Top 500, ECWOC, GGSOC, NSOC)</span></p>
-          </article>
-          <article class="rounded-2xl border border-slate-200/80 bg-white/75 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/70">
-            <span class="mono text-xs text-indigo-600 dark:text-indigo-400">04 / PROBLEM SOLVING</span><p class="mt-3 font-semibold leading-6">700+ Algorithmic Problems Solved</p>
-          </article>
-        </div>
       </div>
+      <nav class="highlights-band" aria-label="Portfolio highlights">
+        <div class="highlights-list mx-auto max-w-7xl px-5 lg:px-8">
+          <a class="highlights-link" href="#achievements">SheBuilds Top 3 Winner</a>
+          <a class="highlights-link" href="#achievements">WCHL Regionalist</a>
+          <a class="highlights-link" href="#open-source">Open Source · ECSOC Top 500</a>
+          <a class="highlights-link" href="#experience">700+ DSA Problems</a>
+        </div>
+      </nav>
     </section>
 
     <section id="projects" class="px-5 py-20 lg:px-8 lg:py-28">
@@ -131,35 +150,128 @@
             </div>
           </div>
         </div>
-        <div id="project-grid" class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          <article class="project-card group" data-category="ai">
-            <div class="project-top"><span class="project-index">01</span><span class="mono text-xs text-slate-400">FEB — APR 2026</span></div>
-            <div class="mt-8"><span class="project-tag">APPLIED AI / NLP</span><h3 class="project-title">Hybrid Fake News &amp; Misinformation Detection</h3><p class="project-copy">A hybrid DistilBERT + Graph Convolutional Network (GCN) model for PHEME threads, achieving 96.2% accuracy and 94.79% F1-score.</p></div>
-            <div class="project-bottom"><span class="mono text-xs text-slate-400">DistilBERT · GCN · PHEME</span><a class="icon-link" href="https://github.com/AnnsuChoudhary/Fake-News-Misinformation-Detection-Platform" target="_blank" rel="noopener noreferrer" aria-label="View Fake News Detection project repository">↗</a></div>
+        <div id="project-grid" class="project-bento mt-10 grid gap-5 md:grid-cols-2">
+          <article class="project-card spotlight-card" data-category="ai">
+            <div class="spotlight-copy">
+              <div class="project-top"><span class="project-index">01 / FLAGSHIP</span><span class="mono text-xs text-slate-400">FEB — APR 2026</span></div>
+              <span class="project-tag mt-8 inline-block">APPLIED AI / NLP</span>
+              <h3 class="project-title mt-3 text-2xl sm:text-3xl">Hybrid Fake News &amp; Misinformation Detection</h3>
+              <div class="mt-4 flex flex-wrap gap-2"><span class="metric-pill">96.2% Acc</span><span class="metric-pill">94.79% F1</span></div>
+              <p class="project-copy mt-5 max-w-xl">A hybrid DistilBERT + Graph Convolutional Network (GCN) model reads both the language of a post and its place in a PHEME conversation thread.</p>
+              <div class="mt-5 flex flex-wrap gap-2" aria-label="Technologies"><span class="tech-pill">DistilBERT</span><span class="tech-pill">GCN</span><span class="tech-pill">PHEME</span><span class="tech-pill">PyTorch</span></div>
+              <div class="mt-7 flex flex-wrap items-center gap-4">
+                <a class="spotlight-link" href="https://github.com/AnnsuChoudhary/Fake-News-Misinformation-Detection-Platform" target="_blank" rel="noopener noreferrer">Explore the build <span aria-hidden="true">↗</span></a>
+                <button class="quick-inspect" type="button" data-project="0">Quick Inspect <span aria-hidden="true">↗</span></button>
+              </div>
+            </div>
+            <div class="pipeline-visual" aria-label="Model pipeline diagram">
+              <div class="pipeline-heading"><span class="mono">MODEL PIPELINE</span><span class="pipeline-live"><i></i> INFERENCE FLOW</span></div>
+              <svg class="pipeline-svg" viewBox="0 0 620 300" role="img" aria-labelledby="pipeline-title pipeline-description">
+                <title id="pipeline-title">Hybrid misinformation detection model pipeline</title>
+                <desc id="pipeline-description">DistilBERT text embeddings and a GCN propagation graph flow into a fusion classifier that reaches 96.2 percent accuracy.</desc>
+                <defs>
+                  <linearGradient id="pipeline-flow" x1="0" x2="1"><stop stop-color="#B86B43" stop-opacity=".3"/><stop offset="1" stop-color="#B86B43"/></linearGradient>
+                  <filter id="pipeline-glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                </defs>
+                <path class="pipeline-connector" d="M170 100 C205 100 205 145 240 145"/><path class="pipeline-connector" d="M170 218 C205 218 205 170 240 170"/><path class="pipeline-connector" d="M390 156 H445"/>
+                <g class="pipeline-node" tabindex="0" role="img" aria-label="DistilBERT text encoder">
+                  <rect x="22" y="58" width="148" height="84" rx="15"/><text class="pipeline-kicker" x="39" y="83">LANGUAGE</text><text class="pipeline-label" x="39" y="108">DistilBERT</text><text class="pipeline-small" x="39" y="127">Text embeddings</text>
+                  <title>DistilBERT encodes each post into contextual text features.</title>
+                </g>
+                <g class="pipeline-node" tabindex="0" role="img" aria-label="GCN propagation graph">
+                  <rect x="22" y="177" width="148" height="82" rx="15"/><text class="pipeline-kicker" x="39" y="202">CONVERSATION</text><text class="pipeline-label" x="39" y="226">GCN graph</text><text class="pipeline-small" x="39" y="245">Propagation</text>
+                  <circle class="graph-dot" cx="148" cy="197" r="3"/><circle class="graph-dot" cx="136" cy="213" r="3"/><circle class="graph-dot" cx="153" cy="226" r="3"/><path class="graph-edge" d="M148 197 136 213 153 226 148 197"/>
+                  <title>The graph convolution layer propagates context between related posts.</title>
+                </g>
+                <g class="pipeline-node fusion-node" tabindex="0" role="img" aria-label="Fusion classifier, 96.2 percent accuracy">
+                  <rect x="240" y="113" width="150" height="86" rx="16"/><text class="pipeline-kicker" x="260" y="140">FUSION</text><text class="pipeline-label" x="260" y="164">Classifier</text><text class="pipeline-small" x="260" y="184">Text + graph</text>
+                  <title>The fusion classifier combines language and conversation graph signals.</title>
+                </g>
+                <g class="pipeline-result" tabindex="0" role="img" aria-label="96.2 percent accuracy on PHEME">
+                  <circle cx="500" cy="156" r="48"/><text class="pipeline-result-number" x="500" y="153" text-anchor="middle">96.2%</text><text class="pipeline-small" x="500" y="174" text-anchor="middle">ACCURACY</text>
+                  <text class="pipeline-small pipeline-dataset" x="500" y="228" text-anchor="middle">PHEME</text>
+                  <title>Evaluation result: 96.2 percent accuracy.</title>
+                </g>
+              </svg>
+              <div class="pipeline-caption"><span><i class="legend-dot language-dot"></i> Text embeddings</span><span><i class="legend-dot graph-legend-dot"></i> GCN propagation graph</span></div>
+            </div>
           </article>
-          <article class="project-card group" data-category="web">
-            <div class="project-top"><span class="project-index">02</span><span class="mono text-xs text-slate-400">JUN — SEP 2025</span></div>
-            <div class="mt-8"><span class="project-tag">WEB · 3D · AI</span><h3 class="project-title">StarLab Adventure — Virtual Science Lab</h3><p class="project-copy">An interactive 3D/AR science lab with Firebase authentication and Firestore, plus a Gemini-powered voice lab buddy using Web Speech API.</p></div>
-            <div class="project-bottom gap-3"><span class="mono text-xs text-slate-400">Three.js · Firebase · Gemini</span><div class="flex gap-2"><a class="icon-link" href="https://starlabadventure.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Visit StarLab Adventure">↗</a><a class="icon-link" href="https://github.com/AnnsuChoudhary/StarLab-Adventure" target="_blank" rel="noopener noreferrer" aria-label="View StarLab Adventure repository">⌘</a></div></div>
+
+          <article class="project-card project-tile" data-category="web">
+            <div class="project-preview starlab-preview">
+              <div class="preview-top"><span class="mono">STEM LAB / ORBIT 01</span><a class="live-pill" href="https://starlabadventure.netlify.app/" target="_blank" rel="noopener noreferrer"><i></i> LIVE 3D/AR DEMO ↗</a></div>
+              <div class="atom-stage" aria-label="Orbiting atom science lab illustration">
+                <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><span class="atom-core"></span><span class="electron-orbit electron-one"><i></i></span><span class="electron-orbit electron-two"><i></i></span><span class="electron-orbit electron-three"><i></i></span>
+                <span class="orbit-label label-left">EXPERIMENT 04</span><span class="orbit-label label-right">H₂ + O₂ → H₂O</span>
+              </div>
+              <span class="preview-caption">A universe of experiments, one orbit at a time.</span>
+            </div>
+            <div class="tile-content">
+              <div class="project-top"><span class="project-index">02</span><span class="metric-pill">3D / AR + Voice AI</span></div>
+              <span class="project-tag mt-5 inline-block">WEB · 3D · AI</span><h3 class="project-title">StarLab Adventure — Virtual Science Lab</h3>
+              <p class="project-copy">An interactive 3D/AR science lab with Firebase authentication, Firestore, and a Gemini-powered voice lab buddy.</p>
+              <div class="project-bottom"><span class="mono text-xs text-slate-400">Three.js · Firebase · Gemini</span><a class="icon-link" href="https://github.com/AnnsuChoudhary/StarLab-Adventure" target="_blank" rel="noopener noreferrer" aria-label="View StarLab Adventure repository">↗</a></div>
+            </div>
+            <button class="quick-inspect" type="button" data-project="1">Quick Inspect <span aria-hidden="true">↗</span></button>
           </article>
-          <article class="project-card group" data-category="web">
-            <div class="project-top"><span class="project-index">03</span><span class="mono text-xs text-slate-400">AUG 2026</span></div>
-            <div class="mt-8"><span class="project-tag">CHROME EXTENSION</span><h3 class="project-title">Tab Manager</h3><p class="project-copy">A Manifest V3 extension with domain grouping, async tab search, named sessions in local storage, and two-way state reconciliation.</p></div>
-            <div class="project-bottom"><span class="mono text-xs text-slate-400">JavaScript · Chrome APIs</span><a class="icon-link" href="https://github.com/AnnsuChoudhary/Tab-Manager-Extension" target="_blank" rel="noopener noreferrer" aria-label="View Tab Manager repository">↗</a></div>
+
+          <article class="project-card project-tile" data-category="web">
+            <div class="project-preview tabs-preview">
+              <div class="mini-window-bar"><span></span><span></span><span></span><b>Tab Manager</b><i>⌕</i></div>
+              <div class="tab-search">⌕ <span>Search 12 open tabs…</span></div>
+              <div class="tab-group">
+                <button class="tab-group-toggle" type="button" aria-expanded="true" aria-controls="tab-group-github"><span>⌄</span> github.com <small>(3)</small></button>
+                <div id="tab-group-github" class="tab-group-items"><span>Pull requests · portfolio</span><span>Issues · open source</span><span>Explore repositories</span></div>
+              </div>
+              <div class="tab-group">
+                <button class="tab-group-toggle" type="button" aria-expanded="true" aria-controls="tab-group-research"><span>⌄</span> research <small>(2)</small></button>
+                <div id="tab-group-research" class="tab-group-items"><span>Graph neural networks</span><span>PHEME dataset notes</span></div>
+              </div>
+            </div>
+            <div class="tile-content">
+              <div class="project-top"><span class="project-index">03</span><span class="metric-pill">Manifest V3</span></div>
+              <span class="project-tag mt-5 inline-block">CHROME EXTENSION</span><h3 class="project-title">Tab Manager</h3>
+              <p class="project-copy">Bring order to crowded browser sessions with domain groups, async search, named sessions, and reliable state reconciliation.</p>
+              <div class="project-bottom"><span class="mono text-xs text-slate-400">JavaScript · Chrome APIs</span><a class="icon-link" href="https://github.com/AnnsuChoudhary/Tab-Manager-Extension" target="_blank" rel="noopener noreferrer" aria-label="View Tab Manager repository">↗</a></div>
+            </div>
+            <button class="quick-inspect" type="button" data-project="2">Quick Inspect <span aria-hidden="true">↗</span></button>
           </article>
-          <article class="project-card group" data-category="web">
-            <div class="project-top"><span class="project-index">04</span><span class="mono text-xs text-slate-400">WEB APP</span></div>
-            <div class="mt-8"><span class="project-tag">CIVIC TECH</span><h3 class="project-title">QLine — Smart Appointment &amp; Queue Management</h3><p class="project-copy">Don't wait in line, join the line digitally. A digital token queue and appointment booking experience.</p></div>
-            <div class="project-bottom"><span class="mono text-xs text-slate-400">Appointments · Digital queue</span><a class="icon-link" href="https://github.com/AnnsuChoudhary/QLine" target="_blank" rel="noopener noreferrer" aria-label="View QLine repository">↗</a></div>
+
+          <article class="project-card project-tile" data-category="web">
+            <div class="project-preview queue-preview">
+              <div class="queue-top"><span class="mono">COMMUNITY CLINIC</span><span class="queue-open"><i></i> QUEUE OPEN</span></div>
+              <div class="queue-counter"><span>NOW SERVING</span><strong>#12</strong><small>Window 02 · General care</small></div>
+              <div class="queue-divider"><span></span><span aria-hidden="true">↓</span><span></span></div>
+              <div class="queue-ticket"><div><span>YOUR TOKEN</span><strong>#15</strong></div><div class="wait-time">~4 min wait</div></div>
+              <button class="join-queue" type="button" aria-pressed="false">Join Digital Queue <span aria-hidden="true">→</span></button>
+              <p class="queue-status" aria-live="polite">Skip the line. Keep your place.</p>
+            </div>
+            <div class="tile-content">
+              <div class="project-top"><span class="project-index">04</span><span class="metric-pill">Live queue · Smart booking</span></div>
+              <span class="project-tag mt-5 inline-block">CIVIC TECH</span><h3 class="project-title">QLine — Smart Appointment &amp; Queue Management</h3>
+              <p class="project-copy">Don't wait in line, join the line digitally. A digital token queue and appointment booking experience.</p>
+              <div class="project-bottom"><span class="mono text-xs text-slate-400">Appointments · Digital queue</span><a class="icon-link" href="https://github.com/AnnsuChoudhary/QLine" target="_blank" rel="noopener noreferrer" aria-label="View QLine repository">↗</a></div>
+            </div>
+            <button class="quick-inspect" type="button" data-project="3">Quick Inspect <span aria-hidden="true">↗</span></button>
           </article>
-          <article class="project-card group" data-category="web">
-            <div class="project-top"><span class="project-index">05</span><span class="mono text-xs text-slate-400">WEB APP</span></div>
-            <div class="mt-8"><span class="project-tag">HEALTH TECH</span><h3 class="project-title">TwinLife — Real-Time Health Tracker</h3><p class="project-copy">Real-time health tracking with emergency alert features, designed to make essential updates and timely support easier to access.</p></div>
-            <div class="project-bottom"><span class="mono text-xs text-slate-400">Health tracking · Emergency alerts</span><a class="icon-link" href="https://github.com/AnnsuChoudhary/TwinLife" target="_blank" rel="noopener noreferrer" aria-label="View TwinLife repository">↗</a></div>
-          </article>
-          <article class="project-card flex flex-col justify-between border-dashed bg-transparent dark:bg-transparent" data-category="all-only">
-            <div><span class="project-tag">BUILDING BLOCKS</span><h3 class="project-title mt-5">Small projects.<br>Useful foundations.</h3><p class="project-copy">A few foundational builds that sharpened my approach to data, interfaces, and object-oriented design.</p></div>
-            <a href="#foundational-builds" class="mt-8 inline-flex items-center text-sm font-bold text-indigo-600 hover:text-indigo-700 dark:text-indigo-400">See foundational builds <span class="ml-2">↓</span></a>
+
+          <article class="project-card project-tile" data-category="web">
+            <div class="project-preview vitals-preview">
+              <div class="vitals-header"><span class="mono">TWINLIFE / LIVE VITALS</span><span class="vitals-indicator"><i></i><b>STABLE</b></span></div>
+              <div class="vitals-reading"><div><span>HEART RATE</span><strong>72 <small>BPM</small></strong></div><div><span>O₂ SATURATION</span><strong>98<small>%</small></strong></div></div>
+              <svg class="heartbeat-svg" viewBox="0 0 520 78" role="img" aria-label="Animated heartbeat waveform">
+                <path class="heartbeat-grid" d="M0 19H520M0 39H520M0 59H520"/><path class="heartbeat-line" d="M0 40H95l16-1 13 1 11-2 14 3 12-1 13-27 13 51 15-32 14 8h45l15-1 13 1 12-2 14 3 12-1 13-27 13 51 15-32 14 8h40l15-1 13 1 12-2 14 3 12-1 13-27 13 51 15-32 14 8h35"/>
+              </svg>
+              <div class="vitals-footer"><span>LAST CHECK · JUST NOW</span><button class="alert-check" type="button" aria-pressed="false">Simulate Alert Check</button></div>
+              <p class="vitals-status" aria-live="polite">All readings within range.</p>
+            </div>
+            <div class="tile-content">
+              <div class="project-top"><span class="project-index">05</span><span class="metric-pill">Real-time · Emergency ready</span></div>
+              <span class="project-tag mt-5 inline-block">HEALTH TECH</span><h3 class="project-title">TwinLife — Real-Time Health Tracker</h3>
+              <p class="project-copy">Real-time health tracking with emergency alert features, designed to make essential updates and timely support easier to access.</p>
+              <div class="project-bottom"><span class="mono text-xs text-slate-400">Health tracking · Emergency alerts</span><a class="icon-link" href="https://github.com/AnnsuChoudhary/TwinLife" target="_blank" rel="noopener noreferrer" aria-label="View TwinLife repository">↗</a></div>
+            </div>
+            <button class="quick-inspect" type="button" data-project="4">Quick Inspect <span aria-hidden="true">↗</span></button>
           </article>
         </div>
         <div id="foundational-builds" class="mt-8 rounded-3xl border border-slate-200 bg-white p-5 sm:p-7 dark:border-slate-800 dark:bg-slate-900">
@@ -168,9 +280,9 @@
           </button>
           <div id="builds-content" class="hidden">
             <div class="mt-6 grid gap-4 md:grid-cols-3">
-              <article class="rounded-2xl bg-slate-50 p-5 dark:bg-slate-800/70"><h3 class="font-bold">Student Management System</h3><p class="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">Python CLI + Streamlit, OOP, JSON, and a Random Forest at-risk student classifier.</p><a class="mt-4 inline-block text-sm font-semibold text-indigo-600 hover:underline dark:text-indigo-400" href="https://github.com/AnnsuChoudhary/Student-Management-System" target="_blank" rel="noopener noreferrer">View repository ↗</a></article>
-              <article class="rounded-2xl bg-slate-50 p-5 dark:bg-slate-800/70"><h3 class="font-bold">Library Management System</h3><p class="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">Python, Streamlit, and SQLite with due-date tracking and exception handling.</p><a class="mt-4 inline-block text-sm font-semibold text-indigo-600 hover:underline dark:text-indigo-400" href="https://github.com/AnnsuChoudhary/Library-Management-System" target="_blank" rel="noopener noreferrer">View repository ↗</a></article>
-              <article class="rounded-2xl bg-slate-50 p-5 dark:bg-slate-800/70"><h3 class="font-bold">Bank Management System</h3><p class="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">An object-oriented learning project centered on core banking workflows.</p><a class="mt-4 inline-block text-sm font-semibold text-indigo-600 hover:underline dark:text-indigo-400" href="https://github.com/AnnsuChoudhary/Bank-Management-System" target="_blank" rel="noopener noreferrer">View repository ↗</a></article>
+              <article class="foundational-project-card rounded-2xl p-5"><h3 class="font-bold">Student Management System</h3><p class="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">Python CLI + Streamlit, OOP, JSON, and a Random Forest at-risk student classifier.</p><a class="mt-4 inline-block text-sm font-semibold hover:underline" href="https://github.com/AnnsuChoudhary/Student-Management-System" target="_blank" rel="noopener noreferrer">View repository ↗</a></article>
+              <article class="foundational-project-card rounded-2xl p-5"><h3 class="font-bold">Library Management System</h3><p class="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">Python, Streamlit, and SQLite with due-date tracking and exception handling.</p><a class="mt-4 inline-block text-sm font-semibold hover:underline" href="https://github.com/AnnsuChoudhary/Library-Management-System" target="_blank" rel="noopener noreferrer">View repository ↗</a></article>
+              <article class="foundational-project-card rounded-2xl p-5"><h3 class="font-bold">Bank Management System</h3><p class="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">An object-oriented learning project centered on core banking workflows.</p><a class="mt-4 inline-block text-sm font-semibold hover:underline" href="https://github.com/AnnsuChoudhary/Bank-Management-System" target="_blank" rel="noopener noreferrer">View repository ↗</a></article>
             </div>
           </div>
         </div>
@@ -185,13 +297,18 @@
             <h3 class="mb-7 flex items-center gap-3 text-xl font-bold"><span class="grid h-10 w-10 place-items-center rounded-xl bg-indigo-100 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">↗</span>Experience</h3>
             <div class="relative space-y-8 pl-7 timeline-line">
               <article class="relative">
-                <span class="absolute -left-[27px] top-1.5 h-4 w-4 rounded-full border-4 border-indigo-200 bg-indigo-600 dark:border-indigo-950"></span>
-                <p class="mono text-xs text-indigo-600 dark:text-indigo-400">20 JUL — 19 AUG 2026 · REMOTE</p><h4 class="mt-2 text-lg font-bold">Python Development Intern</h4><p class="mt-1 text-sm font-medium text-slate-500 dark:text-slate-400">Kinetrexa Software Private Limited</p><p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">Built a Student Management System and a Library Management System, applying Python fundamentals, OOP, and data management.</p><p class="mono mt-2 text-[11px] text-slate-400">CERT ID: KTS00920260275</p>
+                <span class="timeline-node timeline-node--accent" aria-hidden="true"></span>
+                <div class="timeline-meta"><p class="mono text-xs">20 JUL — 19 AUG 2026</p><span class="timeline-pill">REMOTE INTERNSHIP</span></div>
+                <h4 class="mt-3 text-lg font-bold">Python Development Intern</h4><p class="mt-1 text-sm font-medium text-slate-500 dark:text-slate-400">Kinetrexa Software Private Limited</p>
+                <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">Built a Student Management System and a Library Management System, applying Python fundamentals, OOP, and data management.</p>
+                <p class="mono mt-3 text-[11px] text-slate-400">CERT ID: KTS00920260275</p>
                 <button class="certificate-button mt-4" type="button" data-image="Images/internship/Kinetrexa%20certificate%20of%20internship%20completion%20.png" data-caption="Python Development Intern — Kinetrexa Software Private Limited">View Certificate <span aria-hidden="true">↗</span></button>
               </article>
               <article class="relative">
-                <span class="absolute -left-[27px] top-1.5 h-4 w-4 rounded-full border-4 border-indigo-200 bg-indigo-600 dark:border-indigo-950"></span>
-                <p class="mono text-xs text-indigo-600 dark:text-indigo-400">06 JUL — 17 AUG 2026 · REMOTE</p><h4 class="mt-2 text-lg font-bold">Junior Software Developer Intern</h4><p class="mt-1 text-sm font-medium text-slate-500 dark:text-slate-400">YuvaIntern</p><p class="mono mt-2 text-[11px] text-slate-400">CERT ID: YI/2026/73344/285446</p>
+                <span class="timeline-node timeline-node--accent" aria-hidden="true"></span>
+                <div class="timeline-meta"><p class="mono text-xs">06 JUL — 17 AUG 2026</p><span class="timeline-pill">REMOTE INTERNSHIP</span></div>
+                <h4 class="mt-3 text-lg font-bold">Junior Software Developer Intern</h4><p class="mt-1 text-sm font-medium text-slate-500 dark:text-slate-400">YuvaIntern</p>
+                <p class="mono mt-3 text-[11px] text-slate-400">CERT ID: YI/2026/73344/285446</p>
                 <button class="certificate-button mt-4" type="button" data-image="Images/internship/Yuva%20Intern%20certificate%20of%20experience.png" data-caption="Junior Software Developer Intern — YuvaIntern">View Certificate <span aria-hidden="true">↗</span></button>
               </article>
             </div>
@@ -199,18 +316,45 @@
           <div>
             <h3 class="mb-7 flex items-center gap-3 text-xl font-bold"><span class="grid h-10 w-10 place-items-center rounded-xl bg-indigo-100 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">⌂</span>Education</h3>
             <div class="relative space-y-7 pl-7 timeline-line">
-              <article class="relative"><span class="absolute -left-[27px] top-1.5 h-4 w-4 rounded-full border-4 border-indigo-200 bg-indigo-600 dark:border-indigo-950"></span><p class="mono text-xs text-indigo-600 dark:text-indigo-400">2023 — 2027</p><h4 class="mt-2 font-bold">B.Tech in CSE (AI)</h4><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Galgotias College of Engineering and Technology, Greater Noida</p><p class="mt-2 text-sm font-semibold">CGPA: 8.14/10</p></article>
-              <article class="relative"><span class="absolute -left-[27px] top-1.5 h-4 w-4 rounded-full border-4 border-indigo-200 bg-indigo-600 dark:border-indigo-950"></span><p class="mono text-xs text-indigo-600 dark:text-indigo-400">2021 — 2022</p><h4 class="mt-2 font-bold">Class XII (CBSE)</h4><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Kendriya Vidyalaya No. 2, Bhuj Cantt, Gujarat</p><p class="mt-2 text-sm font-semibold">87%</p></article>
-              <article class="relative"><span class="absolute -left-[27px] top-1.5 h-4 w-4 rounded-full border-4 border-indigo-200 bg-indigo-600 dark:border-indigo-950"></span><p class="mono text-xs text-indigo-600 dark:text-indigo-400">2019 — 2020</p><h4 class="mt-2 font-bold">Class X (CBSE)</h4><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Kendriya Vidyalaya, Sriganganagar Cantt, Rajasthan</p><p class="mt-2 text-sm font-semibold">86%</p></article>
+              <article class="relative"><span class="timeline-node timeline-node--sage" aria-hidden="true"></span><p class="mono text-xs timeline-date">2023 — 2027</p><h4 class="mt-3 font-bold">B.Tech in CSE (AI)</h4><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Galgotias College of Engineering and Technology, Greater Noida</p><div class="timeline-pills"><span class="timeline-pill">CGPA: 8.14 / 10</span></div></article>
+              <article class="relative"><span class="timeline-node timeline-node--sage" aria-hidden="true"></span><p class="mono text-xs timeline-date">2021 — 2022</p><h4 class="mt-3 font-bold">Class XII (CBSE)</h4><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Kendriya Vidyalaya No. 2, Bhuj Cantt, Gujarat</p><div class="timeline-pills"><span class="timeline-pill">87% · CBSE</span></div></article>
+              <article class="relative"><span class="timeline-node timeline-node--sage" aria-hidden="true"></span><p class="mono text-xs timeline-date">2019 — 2020</p><h4 class="mt-3 font-bold">Class X (CBSE)</h4><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Kendriya Vidyalaya, Sriganganagar Cantt, Rajasthan</p><div class="timeline-pills"><span class="timeline-pill">86% · CBSE</span></div></article>
             </div>
           </div>
         </div>
         <div class="mt-16">
           <div class="mb-6 flex items-end justify-between"><div><p class="section-kicker">Tools I work with</p><h3 class="mt-2 text-2xl font-bold tracking-tight">Technical skills</h3></div><span class="mono hidden text-xs text-slate-400 sm:inline">LEARN · BUILD · ITERATE</span></div>
-          <div class="grid gap-4 md:grid-cols-3">
-            <article class="skill-card"><span class="skill-symbol">{ }</span><h4>Languages</h4><p>C++ · Java · Python · JavaScript</p></article>
-            <article class="skill-card"><span class="skill-symbol">⌘</span><h4>Web &amp; Cloud</h4><p>HTML5 · CSS3 · Firebase Auth &amp; Firestore · MySQL/SQLite · Spring Boot</p></article>
-            <article class="skill-card"><span class="skill-symbol">✳</span><h4>AI / ML</h4><p>PyTorch · PyTorch Geometric · Hugging Face Transformers · DistilBERT · GCN</p></article>
+          <div class="skill-matrix">
+            <article class="skill-group">
+              <h4 class="skill-group-title"><span class="skill-group-mark" aria-hidden="true">&lt;/&gt;</span>Languages</h4>
+              <div class="skill-pill-grid">
+                <div class="skill-pill"><span class="skill-logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" alt="" loading="lazy" decoding="async"><span class="skill-logo-fallback">C++</span></span><span class="skill-name">C++</span></div>
+                <div class="skill-pill"><span class="skill-logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="" loading="lazy" decoding="async"><span class="skill-logo-fallback">J</span></span><span class="skill-name">Java</span></div>
+                <div class="skill-pill"><span class="skill-logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="" loading="lazy" decoding="async"><span class="skill-logo-fallback">Py</span></span><span class="skill-name">Python</span></div>
+                <div class="skill-pill"><span class="skill-logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="" loading="lazy" decoding="async"><span class="skill-logo-fallback">JS</span></span><span class="skill-name">JavaScript (ES6+)</span></div>
+              </div>
+            </article>
+            <article class="skill-group">
+              <h4 class="skill-group-title"><span class="skill-group-mark" aria-hidden="true">⌘</span>Web &amp; Cloud</h4>
+              <div class="skill-pill-grid">
+                <div class="skill-pill"><span class="skill-logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="" loading="lazy" decoding="async"><span class="skill-logo-fallback">5</span></span><span class="skill-name">HTML5</span></div>
+                <div class="skill-pill"><span class="skill-logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="" loading="lazy" decoding="async"><span class="skill-logo-fallback">#</span></span><span class="skill-name">CSS3</span></div>
+                <div class="skill-pill"><span class="skill-logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-plain.svg" alt="" loading="lazy" decoding="async"><span class="skill-logo-fallback">Fb</span></span><span class="skill-name">Firebase (Auth &amp; Firestore)</span></div>
+                <div class="skill-pill"><span class="skill-logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="" loading="lazy" decoding="async"><span class="skill-logo-fallback">SQL</span></span><span class="skill-name">MySQL</span></div>
+                <div class="skill-pill"><span class="skill-logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg" alt="" loading="lazy" decoding="async"><span class="skill-logo-fallback">DB</span></span><span class="skill-name">SQLite</span></div>
+                <div class="skill-pill"><span class="skill-logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg" alt="" loading="lazy" decoding="async"><span class="skill-logo-fallback">S</span></span><span class="skill-name">Spring Boot</span></div>
+              </div>
+            </article>
+            <article class="skill-group">
+              <h4 class="skill-group-title"><span class="skill-group-mark" aria-hidden="true">✳</span>AI / ML</h4>
+              <div class="skill-pill-grid">
+                <div class="skill-pill"><span class="skill-logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg" alt="" loading="lazy" decoding="async"><span class="skill-logo-fallback">Pt</span></span><span class="skill-name">PyTorch</span></div>
+                <div class="skill-pill"><span class="skill-logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg" alt="" loading="lazy" decoding="async"><span class="skill-logo-fallback">PyG</span></span><span class="skill-name">PyTorch Geometric</span></div>
+                <div class="skill-pill"><span class="skill-logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/huggingface/huggingface-original.svg" alt="" loading="lazy" decoding="async"><span class="skill-logo-fallback">HF</span></span><span class="skill-name">Hugging Face</span></div>
+                <div class="skill-pill"><span class="skill-logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/huggingface/huggingface-original.svg" alt="" loading="lazy" decoding="async"><span class="skill-logo-fallback">DB</span></span><span class="skill-name">DistilBERT</span></div>
+                <div class="skill-pill"><span class="skill-logo" aria-hidden="true"><span class="skill-logo-fallback">GCN</span></span><span class="skill-name">Graph Neural Networks (GCN)</span></div>
+              </div>
+            </article>
           </div>
         </div>
       </div>
@@ -219,31 +363,167 @@
     <section id="open-source" class="px-5 py-20 lg:px-8 lg:py-28">
       <div class="mx-auto max-w-7xl">
         <div class="section-heading"><p class="section-kicker">Community / contribution</p><h2 class="section-title">Open source,<br>open possibilities.</h2><p class="mt-4 max-w-xl text-slate-500 dark:text-slate-400">Learning in public, contributing to communities, and celebrating the milestones along the way.</p></div>
-        <div class="certificate-grid mt-10">
-          <button class="image-card" type="button" data-image="Images/Open%20Source%20Program/ECSOC%20Top%20500%20certificate.jpeg" data-caption="ECSOC — Top 500 Certificate"><img src="Images/Open%20Source%20Program/ECSOC%20Top%20500%20certificate.jpeg" alt="ECSOC Top 500 certificate" loading="lazy"><span>ECSOC · Top 500</span></button>
-          <button class="image-card" type="button" data-image="Images/Open%20Source%20Program/ECSOC%20Badge.jpeg" data-caption="ECSOC Contributor Badge"><img src="Images/Open%20Source%20Program/ECSOC%20Badge.jpeg" alt="ECSOC badge" loading="lazy"><span>ECSOC · Badge</span></button>
-          <button class="image-card" type="button" data-image="Images/Open%20Source%20Program/ECWOC%202026.png" data-caption="ECWOC 2026"><img src="Images/Open%20Source%20Program/ECWOC%202026.png" alt="ECWOC 2026 certificate" loading="lazy"><span>ECWOC · 2026</span></button>
-          <button class="image-card" type="button" data-image="Images/Open%20Source%20Program/ECWOC%20Contributer%20id.jpeg" data-caption="ECWOC Contributor ID"><img src="Images/Open%20Source%20Program/ECWOC%20Contributer%20id.jpeg" alt="ECWOC contributor ID" loading="lazy"><span>ECWOC · Contributor ID</span></button>
-          <button class="image-card" type="button" data-image="Images/Open%20Source%20Program/GGSOC%202026.jpeg" data-caption="GGSOC 2026"><img src="Images/Open%20Source%20Program/GGSOC%202026.jpeg" alt="GGSOC 2026 certificate" loading="lazy"><span>GGSOC · 2026</span></button>
-          <button class="image-card" type="button" data-image="Images/Open%20Source%20Program/NSOC%20.png" data-caption="NSOC"><img src="Images/Open%20Source%20Program/NSOC%20.png" alt="NSOC certificate" loading="lazy"><span>NSOC</span></button>
+        <aside class="activity-panel mt-10" aria-label="Open-source contribution snapshot">
+          <div class="activity-copy">
+            <p class="activity-eyebrow mono">A YEAR IN THE OPEN</p>
+            <h3>Small commits.<br>Shared momentum.</h3>
+            <div class="activity-highlights" aria-label="Contribution highlights">
+              <span>4 Open Source Programs</span><span aria-hidden="true">·</span>
+              <span>ECSOC Top 500 Rank</span><span aria-hidden="true">·</span>
+              <span>PRs, Bug Fixes &amp; Docs</span>
+            </div>
+            <a class="activity-link" href="https://github.com/AnnsuChoudhary" target="_blank" rel="noopener noreferrer">View GitHub Activity <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="activity-art" aria-hidden="true">
+            <div class="activity-grid">
+              <span class="heat-0"></span><span class="heat-1"></span><span class="heat-0"></span><span class="heat-2"></span><span class="heat-1"></span><span class="heat-0"></span><span class="heat-3"></span>
+              <span class="heat-1"></span><span class="heat-2"></span><span class="heat-0"></span><span class="heat-1"></span><span class="heat-3"></span><span class="heat-2"></span><span class="heat-0"></span>
+              <span class="heat-0"></span><span class="heat-1"></span><span class="heat-3"></span><span class="heat-2"></span><span class="heat-0"></span><span class="heat-1"></span><span class="heat-2"></span>
+              <span class="heat-2"></span><span class="heat-0"></span><span class="heat-1"></span><span class="heat-3"></span><span class="heat-2"></span><span class="heat-1"></span><span class="heat-0"></span>
+              <span class="heat-1"></span><span class="heat-3"></span><span class="heat-2"></span><span class="heat-0"></span><span class="heat-1"></span><span class="heat-2"></span><span class="heat-3"></span>
+              <span class="heat-0"></span><span class="heat-1"></span><span class="heat-2"></span><span class="heat-1"></span><span class="heat-3"></span><span class="heat-0"></span><span class="heat-2"></span>
+            </div>
+            <span class="activity-art-note mono">CONTRIBUTION / 2026</span>
+          </div>
+        </aside>
+
+        <div class="program-grid mt-6">
+          <article class="program-card">
+            <div class="program-copy">
+              <div class="program-meta"><span class="program-number mono">01 / ECSOC 2026</span><span class="program-pill">TOP 500 RANK</span></div>
+              <h3>Elite Coders Summer of Code</h3>
+              <p>Ranked in the Top 500 contributors through steady pull requests, thoughtful issue resolution, and work shared with the community.</p>
+            </div>
+            <div class="program-credentials" aria-label="ECSOC credentials">
+              <button class="credential-preview" type="button" data-image="Images/Open%20Source%20Program/ECSOC%20Top%20500%20certificate.jpeg" data-caption="Top 500 Certificate">
+                <img src="Images/Open%20Source%20Program/ECSOC%20Top%20500%20certificate.jpeg" alt="ECSOC Top 500 certificate" loading="lazy">
+                <span>Top 500 Certificate <b aria-hidden="true">↗</b></span>
+              </button>
+              <button class="credential-preview" type="button" data-image="Images/Open%20Source%20Program/ECSOC%20Badge.jpeg" data-caption="Official Badge">
+                <img src="Images/Open%20Source%20Program/ECSOC%20Badge.jpeg" alt="ECSOC official badge" loading="lazy">
+                <span>Official Badge <b aria-hidden="true">↗</b></span>
+              </button>
+            </div>
+          </article>
+
+          <article class="program-card">
+            <div class="program-copy">
+              <div class="program-meta"><span class="program-number mono">02 / ECWOC 2026</span><span class="program-pill">CONTRIBUTOR</span></div>
+              <h3>Elite Coders Winter of Code</h3>
+              <p>Fixed open-source bugs, improved features, and wrote documentation through practical pull requests across the program.</p>
+            </div>
+            <div class="program-credentials" aria-label="ECWOC credentials">
+              <button class="credential-preview" type="button" data-image="Images/Open%20Source%20Program/ECWOC%202026.png" data-caption="Completion Certificate">
+                <img src="Images/Open%20Source%20Program/ECWOC%202026.png" alt="ECWOC 2026 completion certificate" loading="lazy">
+                <span>Completion Certificate <b aria-hidden="true">↗</b></span>
+              </button>
+              <button class="credential-preview" type="button" data-image="Images/Open%20Source%20Program/ECWOC%20Contributer%20id.jpeg" data-caption="Contributor ID">
+                <img src="Images/Open%20Source%20Program/ECWOC%20Contributer%20id.jpeg" alt="ECWOC contributor ID" loading="lazy">
+                <span>Contributor ID <b aria-hidden="true">↗</b></span>
+              </button>
+            </div>
+          </article>
+
+          <article class="program-card">
+            <div class="program-copy">
+              <div class="program-meta"><span class="program-number mono">03 / GGSOC 2026</span><span class="program-pill">OPEN SOURCE</span></div>
+              <h3>GirlScript / GGSOC</h3>
+              <p>Built features collaboratively, then sharpened the work through code reviews and feedback from project maintainers.</p>
+            </div>
+            <div class="program-credentials single" aria-label="GGSOC credential">
+              <button class="credential-preview" type="button" data-image="Images/Open%20Source%20Program/GGSOC%202026.jpeg" data-caption="GGSOC 2026 Certificate">
+                <img src="Images/Open%20Source%20Program/GGSOC%202026.jpeg" alt="GGSOC 2026 certificate" loading="lazy">
+                <span>Program Certificate <b aria-hidden="true">↗</b></span>
+              </button>
+            </div>
+          </article>
+
+          <article class="program-card">
+            <div class="program-copy">
+              <div class="program-meta"><span class="program-number mono">04 / NSOC 2026</span><span class="program-pill">SELECTED CONTRIBUTOR</span></div>
+              <h3>Nexus Spring of Code</h3>
+              <p>Selected to take part in active open-source development sprints, contributing alongside a broader builder community.</p>
+            </div>
+            <div class="program-credentials single" aria-label="NSOC credential">
+              <button class="credential-preview" type="button" data-image="Images/Open%20Source%20Program/NSOC%20.png" data-caption="NSOC 2026 Certificate">
+                <img src="Images/Open%20Source%20Program/NSOC%20.png" alt="NSOC 2026 certificate" loading="lazy">
+                <span>Program Certificate <b aria-hidden="true">↗</b></span>
+              </button>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
     <section id="achievements" class="bg-white px-5 py-20 dark:bg-slate-900/40 lg:px-8 lg:py-28">
       <div class="mx-auto max-w-7xl">
-        <div class="section-heading"><p class="section-kicker">Milestones / recognition</p><h2 class="section-title">A few moments<br>worth framing.</h2><p class="mt-4 max-w-xl text-slate-500 dark:text-slate-400">Hackathons, competitions, and challenges that pushed me to turn ideas into outcomes.</p></div>
-        <div class="certificate-grid mt-10">
-          <button class="image-card" type="button" data-image="Images/Achievements/SheBuilds%20Top%203.png" data-caption="SheBuilds — Top 3"><img src="Images/Achievements/SheBuilds%20Top%203.png" alt="SheBuilds Top 3 certificate" loading="lazy"><span>SheBuilds · Top 3</span></button>
-          <button class="image-card" type="button" data-image="Images/Achievements/WCHL%20Regional%20Qualified.png" data-caption="World Computer Hackers League — Regional Qualified"><img src="Images/Achievements/WCHL%20Regional%20Qualified.png" alt="WCHL Regional Qualified certificate" loading="lazy"><span>WCHL · Regional Qualified</span></button>
-          <button class="image-card" type="button" data-image="Images/Achievements/WCHL%20NAtional%20Qualified.png" data-caption="World Computer Hackers League — National Qualified"><img src="Images/Achievements/WCHL%20NAtional%20Qualified.png" alt="WCHL National Qualified certificate" loading="lazy"><span>WCHL · National Qualified</span></button>
-          <button class="image-card" type="button" data-image="Images/Achievements/Tech%20Jam%202.0.png" data-caption="Tech Jam 2.0"><img src="Images/Achievements/Tech%20Jam%202.0.png" alt="Tech Jam 2.0 certificate" loading="lazy"><span>Tech Jam 2.0</span></button>
-          <button class="image-card" type="button" data-image="Images/Achievements/Adobe%20Hackathon%20.png" data-caption="Adobe Hackathon"><img src="Images/Achievements/Adobe%20Hackathon%20.png" alt="Adobe Hackathon certificate" loading="lazy"><span>Adobe Hackathon</span></button>
-          <button class="image-card" type="button" data-image="Images/Achievements/Flipkart%20Runway%20season%205.png" data-caption="Flipkart Runway — Season 5"><img src="Images/Achievements/Flipkart%20Runway%20season%205.png" alt="Flipkart Runway Season 5 certificate" loading="lazy"><span>Flipkart Runway · Season 5</span></button>
-          <button class="image-card" type="button" data-image="Images/Achievements/Code%20for%20Bharat%20season%202.png" data-caption="Code for Bharat — Season 2"><img src="Images/Achievements/Code%20for%20Bharat%20season%202.png" alt="Code for Bharat Season 2 certificate" loading="lazy"><span>Code for Bharat · Season 2</span></button>
-          <button class="image-card" type="button" data-image="Images/Achievements/Frontend%20Battle%202.0.png" data-caption="Frontend Battle 2.0"><img src="Images/Achievements/Frontend%20Battle%202.0.png" alt="Frontend Battle 2.0 certificate" loading="lazy"><span>Frontend Battle 2.0</span></button>
-          <button class="image-card" type="button" data-image="Images/Achievements/Crave%20the%20code.png" data-caption="Crave the Code"><img src="Images/Achievements/Crave%20the%20code.png" alt="Crave the Code certificate" loading="lazy"><span>Crave the Code</span></button>
-          <button class="image-card" type="button" data-image="Images/Achievements/Unstop%20Treasure%20Hunt.png" data-caption="Unstop Treasure Hunt"><img src="Images/Achievements/Unstop%20Treasure%20Hunt.png" alt="Unstop Treasure Hunt certificate" loading="lazy"><span>Unstop Treasure Hunt</span></button>
+        <div class="section-heading">
+          <p class="section-kicker">Milestones / recognition</p>
+          <h2 class="section-title">A few moments<br>worth framing.</h2>
+          <p class="mt-4 max-w-xl text-slate-500 dark:text-slate-400">Hackathons, competitions, and challenges that pushed me to turn ideas into outcomes.</p>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-2" role="group" aria-label="Filter achievements">
+          <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">All (10)</button>
+          <button class="filter-btn" type="button" data-filter="podium" aria-pressed="false">Podium &amp; Finalists</button>
+          <button class="filter-btn" type="button" data-filter="hackathons" aria-pressed="false">Hackathons</button>
+          <button class="filter-btn" type="button" data-filter="challenges" aria-pressed="false">Challenges</button>
+        </div>
+        <div class="achievement-featured-grid mt-6">
+          <article class="achievement-card" data-category="podium hackathons">
+            <div class="achievement-card-top"><span class="achievement-rank">PODIUM · TOP 3</span><span class="mono text-[10px] tracking-[.12em] text-slate-400">01 / RECOGNITION</span></div>
+            <h3>SheBuilds Hackathon — Top 3 &amp; Sponsor Track Winner</h3>
+            <p>A top-three finish with a winning sponsor-track build.</p>
+            <button class="achievement-preview mt-4" type="button" data-image="Images/Achievements/SheBuilds%20Top%203.png" data-caption="SheBuilds — Top 3">
+              <img src="Images/Achievements/SheBuilds%20Top%203.png" alt="SheBuilds Top 3 certificate" loading="lazy">
+            </button>
+          </article>
+          <article class="achievement-card" data-category="podium">
+            <div class="achievement-card-top"><span class="achievement-rank">NATIONAL QUALIFIED</span><span class="mono text-[10px] tracking-[.12em] text-slate-400">02 / QUALIFICATION</span></div>
+            <h3>World Computer Hackers League — National &amp; Regional Qualified</h3>
+            <p>Cleared both regional and national qualification rounds.</p>
+            <div class="wchl-previews">
+              <button class="achievement-preview" type="button" data-image="Images/Achievements/WCHL%20NAtional%20Qualified.png" data-caption="World Computer Hackers League — National Qualified">
+                <img src="Images/Achievements/WCHL%20NAtional%20Qualified.png" alt="WCHL National Qualified certificate" loading="lazy">
+              </button>
+              <button class="achievement-preview" type="button" data-image="Images/Achievements/WCHL%20Regional%20Qualified.png" data-caption="World Computer Hackers League — Regional Qualified">
+                <img src="Images/Achievements/WCHL%20Regional%20Qualified.png" alt="WCHL Regional Qualified certificate" loading="lazy">
+              </button>
+            </div>
+          </article>
+          <article class="achievement-card" data-category="podium hackathons">
+            <div class="achievement-card-top"><span class="achievement-rank">FINALIST</span><span class="mono text-[10px] tracking-[.12em] text-slate-400">03 / HACKATHON</span></div>
+            <h3>Tech Jam 2.0 — Hackathon Finalist</h3>
+            <p>Selected as a finalist in the Tech Jam 2.0 hackathon.</p>
+            <button class="achievement-preview mt-4" type="button" data-image="Images/Achievements/Tech%20Jam%202.0.png" data-caption="Tech Jam 2.0">
+              <img src="Images/Achievements/Tech%20Jam%202.0.png" alt="Tech Jam 2.0 certificate" loading="lazy">
+            </button>
+          </article>
+        </div>
+        <div class="compact-gallery mt-5">
+          <article class="compact-card" data-category="hackathons">
+            <button class="compact-preview" type="button" data-image="Images/Achievements/Adobe%20Hackathon%20.png" data-caption="Adobe Hackathon"><img src="Images/Achievements/Adobe%20Hackathon%20.png" alt="Adobe Hackathon certificate" loading="lazy"></button>
+            <div class="compact-copy"><h3>Adobe Hackathon</h3><span class="category-tag">HACKATHON</span></div>
+          </article>
+          <article class="compact-card" data-category="challenges">
+            <button class="compact-preview" type="button" data-image="Images/Achievements/Flipkart%20Runway%20season%205.png" data-caption="Flipkart Runway — Season 5"><img src="Images/Achievements/Flipkart%20Runway%20season%205.png" alt="Flipkart Runway Season 5 certificate" loading="lazy"></button>
+            <div class="compact-copy"><h3>Flipkart Runway · Season 5</h3><span class="category-tag">CHALLENGE</span></div>
+          </article>
+          <article class="compact-card" data-category="hackathons">
+            <button class="compact-preview" type="button" data-image="Images/Achievements/Code%20for%20Bharat%20season%202.png" data-caption="Code for Bharat — Season 2"><img src="Images/Achievements/Code%20for%20Bharat%20season%202.png" alt="Code for Bharat Season 2 certificate" loading="lazy"></button>
+            <div class="compact-copy"><h3>Code for Bharat · Season 2</h3><span class="category-tag">HACKATHON</span></div>
+          </article>
+          <article class="compact-card" data-category="challenges">
+            <button class="compact-preview" type="button" data-image="Images/Achievements/Frontend%20Battle%202.0.png" data-caption="Frontend Battle 2.0"><img src="Images/Achievements/Frontend%20Battle%202.0.png" alt="Frontend Battle 2.0 certificate" loading="lazy"></button>
+            <div class="compact-copy"><h3>Frontend Battle 2.0</h3><span class="category-tag">CHALLENGE</span></div>
+          </article>
+          <article class="compact-card" data-category="challenges">
+            <button class="compact-preview" type="button" data-image="Images/Achievements/Crave%20the%20code.png" data-caption="Crave the Code"><img src="Images/Achievements/Crave%20the%20code.png" alt="Crave the Code certificate" loading="lazy"></button>
+            <div class="compact-copy"><h3>Crave the Code</h3><span class="category-tag">CHALLENGE</span></div>
+          </article>
+          <article class="compact-card" data-category="challenges">
+            <button class="compact-preview" type="button" data-image="Images/Achievements/Unstop%20Treasure%20Hunt.png" data-caption="Unstop Treasure Hunt"><img src="Images/Achievements/Unstop%20Treasure%20Hunt.png" alt="Unstop Treasure Hunt certificate" loading="lazy"></button>
+            <div class="compact-copy"><h3>Unstop Treasure Hunt</h3><span class="category-tag">CHALLENGE</span></div>
+          </article>
         </div>
       </div>
     </section>
@@ -251,16 +531,22 @@
     <section id="certifications" class="px-5 py-20 lg:px-8 lg:py-28">
       <div class="mx-auto max-w-7xl">
         <div class="section-heading"><p class="section-kicker">Continuous learning</p><h2 class="section-title">Certifications.</h2><p class="mt-4 max-w-xl text-slate-500 dark:text-slate-400">A growing toolkit across cloud, AI, programming, and computer science fundamentals. Select any card to view it.</p></div>
-        <div class="certificate-grid mt-10">
-          <button class="image-card" type="button" data-image="Images/certification/AWS%20Generative%20Ai%20Foundations.png" data-caption="AWS — Generative AI Foundations"><img src="Images/certification/AWS%20Generative%20Ai%20Foundations.png" alt="AWS Generative AI Foundations certificate" loading="lazy"><span>AWS · Generative AI Foundations</span></button>
-          <button class="image-card" type="button" data-image="Images/certification/AWS%20cloud%20foundations.png" data-caption="AWS Cloud Foundations"><img src="Images/certification/AWS%20cloud%20foundations.png" alt="AWS Cloud Foundations certificate" loading="lazy"><span>AWS · Cloud Foundations</span></button>
-          <button class="image-card" type="button" data-image="Images/certification/IBM%20SkillsBuild%20Build%20with%20real%20world%20Ai.png" data-caption="IBM SkillsBuild — Build with Real World AI"><img src="Images/certification/IBM%20SkillsBuild%20Build%20with%20real%20world%20Ai.png" alt="IBM SkillsBuild Build with Real World AI certificate" loading="lazy"><span>IBM SkillsBuild · Real World AI</span></button>
-          <button class="image-card" type="button" data-image="Images/certification/Advance%20DSA.png" data-caption="Advanced DSA"><img src="Images/certification/Advance%20DSA.png" alt="Advanced DSA certificate" loading="lazy"><span>Advanced DSA</span></button>
-          <button class="image-card" type="button" data-image="Images/certification/Udemy%20Responsible%20AI.png" data-caption="Udemy — Responsible AI"><img src="Images/certification/Udemy%20Responsible%20AI.png" alt="Udemy Responsible AI certificate" loading="lazy"><span>Udemy · Responsible AI</span></button>
-          <button class="image-card" type="button" data-image="Images/certification/Java%20Oops%20certification.png" data-caption="Java OOPs Certification"><img src="Images/certification/Java%20Oops%20certification.png" alt="Java OOPs certificate" loading="lazy"><span>Java · OOPs</span></button>
-          <button class="image-card" type="button" data-image="Images/certification/python%20.png" data-caption="Python Certification"><img src="Images/certification/python%20.png" alt="Python certificate" loading="lazy"><span>Python</span></button>
-          <button class="image-card" type="button" data-image="Images/certification/HTML%20Advance.png" data-caption="Advanced HTML"><img src="Images/certification/HTML%20Advance.png" alt="Advanced HTML certificate" loading="lazy"><span>Advanced HTML</span></button>
-          <button class="image-card" type="button" data-image="Images/certification/DBMS%20part-1.png" data-caption="DBMS — Part 1"><img src="Images/certification/DBMS%20part-1.png" alt="DBMS Part 1 certificate" loading="lazy"><span>DBMS · Part 1</span></button>
+        <div class="mt-8 flex flex-wrap gap-2" role="group" aria-label="Filter certifications">
+          <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">All (9)</button>
+          <button class="filter-btn" type="button" data-filter="cloud-ai" aria-pressed="false">Cloud &amp; AI</button>
+          <button class="filter-btn" type="button" data-filter="dsa-programming" aria-pressed="false">DSA &amp; Programming</button>
+          <button class="filter-btn" type="button" data-filter="web-databases" aria-pressed="false">Web &amp; Databases</button>
+        </div>
+        <div class="certification-grid mt-6">
+          <button class="certification-card" type="button" data-category="cloud-ai" data-image="Images/certification/AWS%20Generative%20Ai%20Foundations.png" data-caption="AWS — Generative AI Foundations"><span class="certification-meta"><span class="issuer-badge">AWS</span><span class="domain-tag">CLOUD &amp; AI</span></span><span class="certification-frame"><img src="Images/certification/AWS%20Generative%20Ai%20Foundations.png" alt="AWS Generative AI Foundations certificate" loading="lazy"><span class="inspect-indicator">Inspect ↗</span></span><span class="certification-title">Generative AI Foundations</span></button>
+          <button class="certification-card" type="button" data-category="cloud-ai" data-image="Images/certification/AWS%20cloud%20foundations.png" data-caption="AWS Cloud Foundations"><span class="certification-meta"><span class="issuer-badge">AWS</span><span class="domain-tag">CLOUD &amp; AI</span></span><span class="certification-frame"><img src="Images/certification/AWS%20cloud%20foundations.png" alt="AWS Cloud Foundations certificate" loading="lazy"><span class="inspect-indicator">Inspect ↗</span></span><span class="certification-title">Cloud Foundations</span></button>
+          <button class="certification-card" type="button" data-category="cloud-ai" data-image="Images/certification/IBM%20SkillsBuild%20Build%20with%20real%20world%20Ai.png" data-caption="IBM SkillsBuild — Build with Real World AI"><span class="certification-meta"><span class="issuer-badge">IBM SkillsBuild</span><span class="domain-tag">CLOUD &amp; AI</span></span><span class="certification-frame"><img src="Images/certification/IBM%20SkillsBuild%20Build%20with%20real%20world%20Ai.png" alt="IBM SkillsBuild Build with Real World AI certificate" loading="lazy"><span class="inspect-indicator">Inspect ↗</span></span><span class="certification-title">Build with Real World AI</span></button>
+          <button class="certification-card" type="button" data-category="dsa-programming" data-image="Images/certification/Advance%20DSA.png" data-caption="Advanced DSA"><span class="certification-meta"><span class="issuer-badge">CipherSchools</span><span class="domain-tag">DSA &amp; PROGRAMMING</span></span><span class="certification-frame"><img src="Images/certification/Advance%20DSA.png" alt="Advanced DSA certificate" loading="lazy"><span class="inspect-indicator">Inspect ↗</span></span><span class="certification-title">Advanced DSA</span></button>
+          <button class="certification-card" type="button" data-category="cloud-ai" data-image="Images/certification/Udemy%20Responsible%20AI.png" data-caption="Udemy — Responsible AI"><span class="certification-meta"><span class="issuer-badge">Udemy</span><span class="domain-tag">CLOUD &amp; AI</span></span><span class="certification-frame"><img src="Images/certification/Udemy%20Responsible%20AI.png" alt="Udemy Responsible AI certificate" loading="lazy"><span class="inspect-indicator">Inspect ↗</span></span><span class="certification-title">Responsible AI</span></button>
+          <button class="certification-card" type="button" data-category="dsa-programming" data-image="Images/certification/Java%20Oops%20certification.png" data-caption="Java OOPs Certification"><span class="certification-meta"><span class="issuer-badge">Infosys Springboard</span><span class="domain-tag">DSA &amp; PROGRAMMING</span></span><span class="certification-frame"><img src="Images/certification/Java%20Oops%20certification.png" alt="Java OOPs certificate" loading="lazy"><span class="inspect-indicator">Inspect ↗</span></span><span class="certification-title">Java OOPs Certification</span></button>
+          <button class="certification-card" type="button" data-category="dsa-programming" data-image="Images/certification/python%20.png" data-caption="Python Certification"><span class="certification-meta"><span class="issuer-badge">Infosys Springboard</span><span class="domain-tag">DSA &amp; PROGRAMMING</span></span><span class="certification-frame"><img src="Images/certification/python%20.png" alt="Python certificate" loading="lazy"><span class="inspect-indicator">Inspect ↗</span></span><span class="certification-title">Python Certification</span></button>
+          <button class="certification-card" type="button" data-category="web-databases" data-image="Images/certification/HTML%20Advance.png" data-caption="Advanced HTML"><span class="certification-meta"><span class="issuer-badge">Infosys Springboard</span><span class="domain-tag">WEB &amp; DATABASES</span></span><span class="certification-frame"><img src="Images/certification/HTML%20Advance.png" alt="Advanced HTML certificate" loading="lazy"><span class="inspect-indicator">Inspect ↗</span></span><span class="certification-title">Advanced HTML</span></button>
+          <button class="certification-card" type="button" data-category="web-databases" data-image="Images/certification/DBMS%20part-1.png" data-caption="DBMS — Part 1"><span class="certification-meta"><span class="issuer-badge">Infosys Springboard</span><span class="domain-tag">WEB &amp; DATABASES</span></span><span class="certification-frame"><img src="Images/certification/DBMS%20part-1.png" alt="DBMS Part 1 certificate" loading="lazy"><span class="inspect-indicator">Inspect ↗</span></span><span class="certification-title">DBMS · Part 1</span></button>
         </div>
       </div>
     </section>
@@ -277,19 +563,20 @@
           <div class="mt-8 flex flex-wrap items-center gap-3">
             <a class="text-lg font-semibold text-white underline decoration-indigo-500 decoration-2 underline-offset-8 hover:text-indigo-200" href="mailto:annsu2025@gmail.com">annsu2025@gmail.com</a>
             <button id="copy-email" type="button" class="rounded-full border border-slate-700 px-4 py-2 text-sm font-semibold text-slate-300 transition hover:border-indigo-400 hover:text-white">Copy email</button>
+            <a class="inline-flex items-center rounded-full border border-slate-700 px-4 py-2 text-sm font-semibold text-slate-300 transition hover:border-indigo-400 hover:text-white" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=annsu2025@gmail.com" target="_blank" rel="noopener noreferrer">Compose in Gmail Web ↗</a>
             <span id="copy-status" class="sr-only" aria-live="polite"></span>
           </div>
-          <div class="mt-8 flex flex-wrap gap-x-5 gap-y-3 text-sm text-slate-400">
-            <a class="footer-link" href="https://github.com/AnnsuChoudhary" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-            <a class="footer-link" href="https://www.linkedin.com/in/annsu-choudhary-1b8775297" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-            <a class="footer-link" href="https://leetcode.com/u/annsuchoudhary/" target="_blank" rel="noopener noreferrer">LeetCode ↗</a>
-            <a class="footer-link" href="https://www.codechef.com/users/annsu" target="_blank" rel="noopener noreferrer">CodeChef ↗</a>
-            <a class="footer-link" href="https://www.hackerrank.com/profile/annsuchoudhary21" target="_blank" rel="noopener noreferrer">HackerRank ↗</a>
+          <div class="mt-8 flex flex-wrap gap-3 text-sm text-slate-400" role="group" aria-label="Find me on">
+            <a class="social-link" href="https://github.com/AnnsuChoudhary" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#social-github"></use></svg></a>
+            <a class="social-link" href="https://www.linkedin.com/in/annsu-choudhary-1b8775297" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#social-linkedin"></use></svg></a>
+            <a class="social-link" href="https://leetcode.com/u/annsuchoudhary/" target="_blank" rel="noopener noreferrer" aria-label="LeetCode" title="LeetCode"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#social-leetcode"></use></svg></a>
+            <a class="social-link" href="https://www.codechef.com/users/annsu" target="_blank" rel="noopener noreferrer" aria-label="CodeChef" title="CodeChef"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#social-codechef"></use></svg></a>
+            <a class="social-link" href="https://www.hackerrank.com/profile/annsuchoudhary21" target="_blank" rel="noopener noreferrer" aria-label="HackerRank" title="HackerRank"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#social-hackerrank"></use></svg></a>
           </div>
         </div>
         <form id="contact-form" class="rounded-3xl border border-slate-800 bg-slate-900/75 p-6 sm:p-8">
           <h3 class="text-xl font-bold">Send a message</h3>
-          <p class="mt-2 text-sm text-slate-400">This opens your email app with the message ready to send.</p>
+          <p class="mt-2 text-sm text-slate-400">Your email app opens a draft for you to send from your own account.</p>
           <label class="form-label" for="contact-name">Name</label><input class="form-input" id="contact-name" name="name" autocomplete="name" required>
           <label class="form-label" for="contact-subject">Subject</label><input class="form-input" id="contact-subject" name="subject" required>
           <label class="form-label" for="contact-message">Message</label><textarea class="form-input min-h-32 resize-y" id="contact-message" name="message" required></textarea>
@@ -310,12 +597,40 @@
     </div>
   </div>
 
+  <dialog id="project-dialog" class="project-dialog" aria-labelledby="project-dialog-title">
+    <div class="dialog-topline"><span class="mono">QUICK INSPECT / PROJECT NOTES</span><button id="project-dialog-close" type="button" class="dialog-close" aria-label="Close project details">×</button></div>
+    <p id="project-dialog-category" class="project-tag mt-8"></p>
+    <h2 id="project-dialog-title" class="mt-3 text-3xl font-bold tracking-tight"></h2>
+    <p id="project-dialog-summary" class="mt-4 leading-7 text-slate-600 dark:text-slate-300"></p>
+    <div class="dialog-notes mt-7">
+      <section class="architecture-panel">
+        <p class="mono text-xs uppercase tracking-widest">The Problem</p>
+        <ul id="project-dialog-problem" class="mt-4 space-y-3"></ul>
+      </section>
+      <section class="architecture-panel">
+        <p class="mono text-xs uppercase tracking-widest">System Architecture</p>
+        <ul id="project-dialog-architecture" class="mt-4 space-y-3"></ul>
+      </section>
+      <section class="architecture-panel">
+        <p class="mono text-xs uppercase tracking-widest">Key Engineering Highlights</p>
+        <ul id="project-dialog-highlights" class="mt-4 space-y-3"></ul>
+      </section>
+    </div>
+    <div class="mt-7 flex flex-wrap gap-3">
+      <a id="project-dialog-live" class="dialog-link hidden" href="" target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+      <a id="project-dialog-code" class="dialog-link" href="" target="_blank" rel="noopener noreferrer">GitHub Repository ↗</a>
+    </div>
+  </dialog>
+
   <style>
     .nav-link { border-radius: .5rem; padding: .5rem .25rem; font-size: .82rem; font-weight: 600; color: #64748b; transition: color .2s; }
     .nav-link:hover, .social-link:hover, .footer-link:hover { color: #6366f1; }
     .dark .nav-link { color: #94a3b8; }
     .dark .nav-link:hover { color: #a5b4fc; }
-    .social-link { font-weight: 600; transition: color .2s; }
+    .social-link { display: grid; height: 2.75rem; width: 2.75rem; flex: 0 0 auto; place-items: center; border: 1px solid var(--line); border-radius: 9999px; background: var(--surface); color: var(--muted) !important; box-shadow: 0 5px 14px -10px rgba(20, 20, 19, .45); transition: transform .2s, color .2s, border-color .2s, background .2s, box-shadow .2s; }
+    .social-link svg { width: 1.1rem; height: 1.1rem; }
+    .social-link:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--accent) 50%, var(--line)); background: var(--accent-soft); color: var(--accent) !important; box-shadow: 0 8px 18px -12px color-mix(in srgb, var(--accent) 65%, transparent); }
+    .social-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     .section-heading { max-width: 860px; }
     .section-kicker { font-family: "JetBrains Mono", monospace; font-size: .7rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #6366f1; }
     .dark .section-kicker { color: #a5b4fc; }
@@ -368,6 +683,457 @@
     .form-input:focus { border-color: #818cf8; box-shadow: 0 0 0 3px rgba(129,140,248,.18); }
     .footer-link { transition: color .2s; }
   </style>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #F3EEE6;
+      --paper-alt: #F1EEE8;
+      --ink: #141413;
+      --muted: #716E68;
+      --line: #E5DED5;
+      --accent: #B86B43;
+      --accent-soft: #F3E6DD;
+      --surface: #FFFEFC;
+    }
+    html.dark {
+      color-scheme: dark;
+      --paper: #191816;
+      --paper-alt: #211F1C;
+      --ink: #F4F0E9;
+      --muted: #B1AAA0;
+      --line: #38342F;
+      --accent: #D88C63;
+      --accent-soft: #39271E;
+      --surface: #24221F;
+    }
+    #open-source .activity-panel {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      overflow: hidden;
+      border: 1px solid #38342F;
+      border-radius: 1.5rem;
+      background: #141413;
+      padding: clamp(1.35rem, 3vw, 2.4rem);
+      color: #F4F0E9;
+    }
+    #open-source .activity-copy { min-width: 0; }
+    #open-source .activity-eyebrow { color: #D98256; font-size: .65rem; letter-spacing: .16em; }
+    #open-source .activity-copy h3 { margin-top: .8rem; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 750; letter-spacing: -.055em; line-height: 1.08; }
+    #open-source .activity-highlights { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem .65rem; margin-top: 1.15rem; color: #B1AAA0; font-size: .75rem; line-height: 1.5; }
+    #open-source .activity-highlights span:nth-child(even) { color: #D98256; }
+    #open-source .activity-link { display: inline-flex; align-items: center; gap: .55rem; margin-top: 1.25rem; color: #F4F0E9; font-size: .8rem; font-weight: 700; transition: color .2s; }
+    #open-source .activity-link:hover { color: #D98256; }
+    #open-source .activity-link span { color: #D98256; }
+    #open-source .activity-art { flex: 0 0 auto; border: 1px solid #38342F; border-radius: 1.1rem; background: linear-gradient(145deg, #211F1C, #191816); padding: 1.2rem 1.35rem 1rem; }
+    #open-source .activity-grid { display: grid; grid-template-columns: repeat(7, .82rem); gap: .42rem; }
+    #open-source .activity-grid span { width: .82rem; aspect-ratio: 1; border-radius: .2rem; }
+    #open-source .heat-0 { background: #38342F; }
+    #open-source .heat-1 { background: #69775A; }
+    #open-source .heat-2 { background: #A9B58F; }
+    #open-source .heat-3 { background: #B86B43; }
+    #open-source .activity-art-note { display: block; margin-top: .8rem; color: #8C857B; font-size: .55rem; letter-spacing: .1em; text-align: right; }
+    #open-source .program-grid { display: grid; gap: 1rem; }
+    #open-source .program-card { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 1.35rem; background: var(--surface); padding: clamp(1.1rem, 2vw, 1.55rem); box-shadow: 0 14px 36px -28px rgba(20, 20, 19, .32); transition: transform .22s, border-color .22s, box-shadow .22s; }
+    #open-source .program-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); box-shadow: 0 18px 38px -25px color-mix(in srgb, var(--accent) 28%, transparent); }
+    #open-source .program-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .6rem; }
+    #open-source .program-number { color: var(--accent); font-size: .64rem; letter-spacing: .08em; }
+    #open-source .program-pill { border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--line)); border-radius: 999px; background: var(--accent-soft); padding: .35rem .55rem; color: var(--accent); font-family: "JetBrains Mono", monospace; font-size: .55rem; font-weight: 600; letter-spacing: .07em; }
+    #open-source .program-copy h3 { margin-top: .85rem; font-size: clamp(1.1rem, 2vw, 1.35rem); font-weight: 750; letter-spacing: -.04em; line-height: 1.25; }
+    #open-source .program-copy p { margin-top: .55rem; color: var(--muted); font-size: .8rem; line-height: 1.7; }
+    #open-source .program-credentials { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; margin-top: 1.2rem; }
+    #open-source .program-credentials.single { grid-template-columns: minmax(0, .72fr); }
+    #open-source .credential-preview { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: .9rem; background: var(--paper-alt); color: var(--ink); text-align: left; transition: border-color .2s, transform .2s; }
+    #open-source .credential-preview:hover { transform: translateY(-2px); border-color: var(--accent); }
+    #open-source .credential-preview img { display: block; width: 100%; height: 118px; background: var(--paper-alt); object-fit: contain; }
+    #open-source .credential-preview span { display: flex; min-height: 2.5rem; align-items: center; justify-content: space-between; gap: .3rem; padding: .55rem .65rem; font-size: .66rem; font-weight: 700; line-height: 1.35; }
+    #open-source .credential-preview b { flex: 0 0 auto; color: var(--accent); font-size: .8rem; }
+    #open-source .activity-link:focus-visible, #open-source .credential-preview:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 60%, transparent); outline-offset: 3px; }
+    @media (min-width: 768px) {
+      #open-source .program-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; }
+      #open-source .program-card { padding: 1.45rem; }
+    }
+    @media (max-width: 640px) {
+      #open-source .activity-panel { align-items: flex-start; flex-direction: column; gap: 1.4rem; }
+      #open-source .activity-art { align-self: stretch; }
+      #open-source .activity-grid { grid-template-columns: repeat(7, minmax(0, 1fr)); justify-items: center; }
+      #open-source .activity-grid span { width: min(100%, .82rem); }
+      #open-source .program-credentials.single { grid-template-columns: minmax(0, 1fr); }
+    }
+    body { background: var(--paper) !important; color: var(--ink) !important; font-family: "Plus Jakarta Sans", sans-serif; }
+    header { background: color-mix(in srgb, var(--paper) 90%, transparent) !important; border-color: var(--line) !important; }
+    .dot-grid { display: none; }
+    #home { padding-top: 9rem; }
+    html:not(.dark) #home { background: radial-gradient(ellipse at 14% 20%, rgba(184, 107, 67, .13), transparent 43%), radial-gradient(ellipse at 82% 32%, rgba(216, 184, 143, .18), transparent 40%); }
+    #experience, #achievements { background: var(--paper-alt) !important; }
+    .highlights-band { margin: 4rem -1.25rem 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .highlights-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .highlights-link { display: flex; min-width: 0; min-height: 4.5rem; align-items: center; justify-content: center; padding: .8rem 1rem; color: var(--muted); font-size: .78rem; font-weight: 650; line-height: 1.5; text-align: center; transition: color .2s; }
+    .highlights-link + .highlights-link { border-left: 1px solid var(--line); }
+    .highlights-link:hover { color: var(--accent); }
+    .highlights-link:focus-visible { z-index: 1; outline: 2px solid var(--accent); outline-offset: -4px; color: var(--accent); }
+    .hero-layout { display: grid; align-items: center; gap: 3rem; grid-template-columns: minmax(0, 1.15fr) minmax(280px, .75fr); }
+    .hero-copy { max-width: 760px; }
+    .hero-copy > .mono { border-color: var(--line) !important; background: var(--surface) !important; color: var(--accent) !important; }
+    .hero-name { margin: 0; color: var(--ink); font-size: clamp(3.2rem, 8.5vw, 7.3rem); font-weight: 800; letter-spacing: -.09em; line-height: .84; }
+    .hero-headline { margin-top: 1.8rem; font-size: clamp(1.7rem, 3.2vw, 2.8rem); font-weight: 650; letter-spacing: -.055em; line-height: 1.15; }
+    .hero-headline span { color: var(--accent); }
+    .hero-portrait { position: relative; justify-self: center; width: min(100%, 410px); padding: 12px; border: 1px solid var(--line); border-radius: 42% 58% 65% 35% / 40% 45% 55% 60%; background: var(--surface); box-shadow: 0 24px 70px -38px color-mix(in srgb, var(--accent) 45%, transparent); transform: rotate(2deg); }
+    .hero-portrait img { display: block; width: 100%; aspect-ratio: .88; object-fit: cover; object-position: center 28%; border-radius: inherit; }
+    .portrait-note { position: absolute; right: -1.5rem; bottom: 1.5rem; padding: .8rem 1rem; border: 1px solid var(--line); border-radius: 1rem; background: var(--surface); color: var(--ink); font-size: .82rem; box-shadow: 0 10px 24px #14141314; transform: rotate(-2deg); }
+    .portrait-note .mono { color: var(--accent); font-size: .62rem; letter-spacing: .12em; }
+    .nav-link, .social-link, .footer-link { color: var(--muted) !important; }
+    .nav-link:hover, .social-link:hover, .footer-link:hover { color: var(--accent) !important; }
+    .text-slate-600, .text-slate-500, .text-slate-400 { color: var(--muted) !important; }
+    .border-slate-200, .border-slate-300, .border-slate-200\/70, .border-slate-200\/80 { border-color: var(--line) !important; }
+    [class~="bg-indigo-600"], [class~="bg-indigo-500"] { background-color: var(--accent) !important; }
+    [class~="bg-indigo-100"], [class~="bg-indigo-50"] { background-color: var(--accent-soft) !important; }
+    [class~="text-indigo-600"], [class~="text-indigo-700"], [class~="text-indigo-500"], [class~="text-indigo-300"] { color: var(--accent) !important; }
+    [class~="border-indigo-200"], [class~="border-indigo-400"] { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)) !important; }
+    .hover\:bg-indigo-700:hover, .hover\:bg-indigo-400:hover { background-color: #9f5734 !important; }
+    .hover\:text-indigo-600:hover, .hover\:text-indigo-700:hover { color: var(--accent) !important; }
+    .shadow-indigo-600\/20 { --tw-shadow-color: color-mix(in srgb, var(--accent) 20%, transparent) !important; }
+    [class~="bg-indigo-200/40"] { background-color: color-mix(in srgb, var(--accent) 12%, transparent) !important; }
+    .section-kicker, .project-tag, .project-index { color: var(--accent) !important; }
+    .section-title, .project-title { color: var(--ink) !important; }
+    .filter-btn { border-color: var(--line) !important; color: var(--muted) !important; }
+    [class~="bg-white/80"], [class~="bg-white/75"] { background-color: var(--surface) !important; }
+    .filter-btn:hover, .filter-btn.active { border-color: var(--accent) !important; background: var(--accent) !important; color: #fff !important; }
+    .project-card, .image-card, .skill-card { border-color: var(--line) !important; background: var(--surface) !important; color: var(--ink); }
+    .project-card { position: relative; min-height: 390px; padding-bottom: 4.5rem; }
+    .project-card:hover, .image-card:hover { border-color: var(--accent) !important; box-shadow: 0 18px 40px -28px color-mix(in srgb, var(--accent) 65%, transparent); }
+    .project-card.hidden { display: none; }
+    .project-copy, .skill-card p { color: var(--muted) !important; }
+    .metric-pill { align-self: flex-start; margin-top: 1rem; padding: .45rem .7rem; border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--line)); border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-family: "JetBrains Mono", monospace; font-size: .67rem; font-weight: 600; letter-spacing: -.02em; }
+    .quick-inspect { position: absolute; right: 1.5rem; bottom: 1.1rem; display: inline-flex; align-items: center; gap: .55rem; padding: .55rem 0; color: var(--accent); font-size: .78rem; font-weight: 700; }
+    .quick-inspect span { transition: transform .2s ease; }
+    .quick-inspect:hover span { transform: translate(3px, -3px); }
+    .icon-link, .skill-symbol { background: var(--accent-soft) !important; color: var(--accent) !important; }
+    .icon-link:hover { background: var(--accent) !important; color: #fff !important; }
+    .certificate-button { border-color: var(--line) !important; color: var(--accent) !important; }
+    .certificate-button:hover { background: var(--accent-soft) !important; }
+    .image-card img { background: var(--paper-alt); }
+    .timeline-line::before { background: linear-gradient(to bottom, var(--accent), #89977A 68%, var(--line) 95%, transparent); }
+    #experience .timeline-line > article { min-width: 0; border: 1px solid var(--line); border-radius: 1rem; background: var(--surface); padding: 1.15rem; box-shadow: 0 10px 28px -20px rgba(20, 20, 19, .3); transition: transform .22s, border-color .22s, box-shadow .22s; }
+    #experience .timeline-line > article:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--accent) 42%, var(--line)); box-shadow: 0 16px 32px -22px color-mix(in srgb, var(--accent) 30%, transparent); }
+    .timeline-node { position: absolute; top: 1.05rem; left: -28px; width: 1rem; height: 1rem; border: 3px solid var(--paper-alt); border-radius: 50%; }
+    .timeline-node--accent { background: var(--accent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent), 0 0 14px color-mix(in srgb, var(--accent) 58%, transparent); }
+    .timeline-node--sage { background: #89977A; box-shadow: 0 0 0 1px color-mix(in srgb, #89977A 35%, transparent), 0 0 14px color-mix(in srgb, #89977A 58%, transparent); }
+    .timeline-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .55rem; }
+    .timeline-date, .timeline-meta .mono { color: var(--accent); letter-spacing: .03em; }
+    .timeline-pills { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .9rem; }
+    .timeline-pill { display: inline-flex; align-items: center; border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--line)); border-radius: 999px; background: var(--accent-soft); padding: .38rem .62rem; color: var(--accent); font-family: "JetBrains Mono", monospace; font-size: .62rem; font-weight: 600; letter-spacing: .015em; line-height: 1.4; }
+    ::selection { background: #E8C9B6; color: #141413; }
+    .project-dialog { width: min(92vw, 650px); max-height: 88vh; overflow-y: auto; margin: auto; padding: clamp(1.5rem, 5vw, 2.5rem); border: 1px solid var(--line); border-radius: 1.5rem; background: var(--paper); color: var(--ink); box-shadow: 0 24px 90px #0005; }
+    .project-dialog::backdrop { background: #141413b8; backdrop-filter: blur(5px); }
+    .dialog-topline { display: flex; align-items: center; justify-content: space-between; color: var(--accent); font-size: .65rem; letter-spacing: .12em; }
+    .dialog-close { display: grid; width: 2.4rem; height: 2.4rem; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--ink); font-size: 1.5rem; }
+    .architecture-panel { border: 1px solid var(--line); border-radius: 1rem; background: var(--surface); padding: 1.2rem; }
+    .architecture-panel > p { color: var(--accent); }
+    .architecture-panel li { display: flex; gap: .7rem; color: var(--muted); font-size: .9rem; line-height: 1.6; }
+    .architecture-panel li::before { content: "↗"; color: var(--accent); font-family: "JetBrains Mono", monospace; }
+    .dialog-link { display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; background: var(--accent); padding: .75rem 1.1rem; color: white; font-size: .85rem; font-weight: 700; }
+    .dialog-link:hover { filter: brightness(.92); }
+    .dialog-link.hidden { display: none; }
+    #project-grid.project-bento { grid-template-columns: minmax(0, 1fr); }
+    #projects .project-card {
+      isolation: isolate;
+      overflow: hidden;
+      background: var(--surface) !important;
+      transition: transform .28s cubic-bezier(.2,.8,.2,1), border-color .25s, box-shadow .28s;
+    }
+    #projects .project-card::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--accent) 10%, transparent), transparent 68%);
+      content: "";
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s;
+    }
+    #projects .project-card:hover::before, #projects .project-card:focus-within::before { opacity: 1; }
+    #projects .project-card:hover { transform: translateY(-5px); border-color: var(--accent) !important; }
+    #projects .spotlight-card {
+      display: grid;
+      grid-column: 1 / -1;
+      grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+      align-items: stretch;
+      gap: clamp(1.5rem, 4vw, 3.5rem);
+      min-height: 0;
+      padding: clamp(1.25rem, 3vw, 2.25rem);
+      border-color: color-mix(in srgb, var(--accent) 34%, var(--line)) !important;
+      background: linear-gradient(125deg, var(--surface), color-mix(in srgb, var(--accent-soft) 42%, var(--surface))) !important;
+    }
+    #projects .spotlight-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
+    #projects .spotlight-copy .project-top { width: 100%; }
+    #projects .spotlight-card .project-title { max-width: 14ch; line-height: 1.15; }
+    #projects .spotlight-card .metric-pill { margin-top: 0; }
+    #projects .spotlight-card .quick-inspect { position: static; padding: .55rem 0; }
+    .tech-pill { border: 1px solid var(--line); border-radius: 999px; background: var(--surface); padding: .4rem .65rem; color: var(--muted); font-family: "JetBrains Mono", monospace; font-size: .66rem; }
+    .spotlight-link { display: inline-flex; align-items: center; gap: .55rem; border-radius: 999px; background: var(--accent); padding: .7rem 1rem; color: #fff; font-size: .78rem; font-weight: 700; transition: transform .2s, filter .2s; }
+    .spotlight-link:hover { transform: translateY(-2px); filter: brightness(.93); }
+    .pipeline-visual { display: flex; min-width: 0; flex-direction: column; justify-content: center; overflow: hidden; border: 1px solid var(--line); border-radius: 1.25rem; background: color-mix(in srgb, var(--paper-alt) 78%, var(--surface)); padding: clamp(.85rem, 2.3vw, 1.4rem); }
+    .pipeline-heading, .pipeline-caption { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+    .pipeline-heading { color: var(--muted); font-size: .58rem; letter-spacing: .12em; }
+    .pipeline-live { display: inline-flex; align-items: center; gap: .4rem; color: var(--muted); font-size: .53rem; }
+    .pipeline-live i, .live-pill i, .queue-open i, .vitals-indicator i { width: .42rem; height: .42rem; border-radius: 50%; background: #6b9b70; box-shadow: 0 0 0 3px color-mix(in srgb, #6b9b70 15%, transparent); }
+    .pipeline-svg { display: block; width: 100%; height: auto; margin: .45rem 0; overflow: visible; }
+    .pipeline-connector { fill: none; stroke: url(#pipeline-flow); stroke-dasharray: 6 6; stroke-width: 2; animation: pipeline-dash 2.8s linear infinite; }
+    .pipeline-node rect { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; transition: stroke .2s, filter .2s, transform .2s; }
+    .pipeline-node:hover rect, .pipeline-node:focus rect, .pipeline-node:focus-visible rect { stroke: var(--accent); filter: url(#pipeline-glow); transform: translateY(-2px); }
+    .pipeline-kicker { fill: var(--muted); font: 600 8px "JetBrains Mono", monospace; letter-spacing: 1px; }
+    .pipeline-label { fill: var(--ink); font: 700 13px "Plus Jakarta Sans", sans-serif; }
+    .pipeline-small { fill: var(--muted); font: 500 9px "JetBrains Mono", monospace; }
+    .graph-dot { fill: var(--accent); }
+    .graph-edge { fill: none; stroke: var(--accent); stroke-opacity: .55; stroke-width: 1; }
+    .pipeline-result circle { fill: var(--accent-soft); stroke: color-mix(in srgb, var(--accent) 55%, var(--line)); stroke-width: 1.5; transition: filter .2s, transform .2s; transform-origin: 500px 156px; }
+    .pipeline-result:hover circle, .pipeline-result:focus circle { filter: url(#pipeline-glow); transform: scale(1.05); }
+    .pipeline-result-number { fill: var(--accent); font: 800 17px "Plus Jakarta Sans", sans-serif; }
+    .pipeline-dataset { fill: var(--accent); }
+    .pipeline-caption { justify-content: flex-start; flex-wrap: wrap; gap: .6rem 1.1rem; color: var(--muted); font-size: .57rem; }
+    .pipeline-caption span { display: inline-flex; align-items: center; gap: .35rem; }
+    .legend-dot { width: .42rem; height: .42rem; border-radius: 50%; background: var(--accent); }
+    .graph-legend-dot { background: color-mix(in srgb, var(--accent) 45%, var(--paper-alt)); border: 1px solid var(--accent); }
+    #projects .project-tile { min-height: 0; padding: 0 0 4.4rem; }
+    .project-preview { position: relative; min-height: 205px; overflow: hidden; border-bottom: 1px solid var(--line); padding: 1.15rem 1.35rem; }
+    .tile-content { padding: 1.35rem 1.5rem 0; }
+    .tile-content .project-top { gap: .5rem; }
+    .tile-content .metric-pill { margin-top: 0; text-align: center; }
+    .tile-content .project-title { min-height: 2.8em; }
+    .tile-content .project-bottom { margin-top: 1.25rem; }
+    #projects .project-tile .quick-inspect { right: 1.5rem; bottom: .9rem; }
+    .starlab-preview { display: flex; flex-direction: column; background: radial-gradient(ellipse at 50% 60%, color-mix(in srgb, #9879c2 22%, var(--surface)), var(--paper-alt) 72%); }
+    .preview-top, .queue-top, .vitals-header { display: flex; align-items: center; justify-content: space-between; gap: .6rem; color: var(--muted); font-size: .55rem; letter-spacing: .09em; }
+    .live-pill { display: inline-flex; align-items: center; gap: .38rem; border: 1px solid color-mix(in srgb, #6b9b70 45%, var(--line)); border-radius: 999px; background: color-mix(in srgb, #6b9b70 10%, var(--surface)); padding: .45rem .65rem; color: #4b8051; font-size: .55rem; font-weight: 700; letter-spacing: .04em; box-shadow: 0 0 20px color-mix(in srgb, #6b9b70 18%, transparent); }
+    .atom-stage { position: relative; width: 170px; height: 125px; align-self: center; margin: -1.35rem auto -.2rem; perspective: 400px; }
+    .atom-core { position: absolute; top: 50%; left: 50%; width: 20px; height: 20px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, #d9b8ff 20%, #8f6ac0 75%); box-shadow: 0 0 14px #b99ae9, 0 0 34px #9971d988; transform: translate(-50%, -50%); }
+    .orbit { position: absolute; top: 50%; left: 50%; width: 140px; height: 54px; border: 1px solid #aa8bd277; border-radius: 50%; transform-style: preserve-3d; }
+    .orbit-one { transform: translate(-50%, -50%) rotate(0deg); }
+    .orbit-two { transform: translate(-50%, -50%) rotate(60deg); }
+    .orbit-three { transform: translate(-50%, -50%) rotate(-60deg); }
+    .electron-orbit { position: absolute; top: 50%; left: 50%; width: 140px; height: 54px; margin: -27px 0 0 -70px; animation: electron-orbit 4s linear infinite; }
+    .electron-orbit i { position: absolute; top: 50%; right: 0; width: 7px; height: 7px; border-radius: 50%; background: #f2d5a5; box-shadow: 0 0 11px #f4c873; transform: translate(50%, -50%); }
+    .electron-two { animation-duration: 5s; animation-direction: reverse; }
+    .electron-three { animation-duration: 6s; }
+    .atom-stage:hover .orbit { border-color: #bda2e5; }
+    .orbit-label { position: absolute; color: var(--muted); font: 500 7px "JetBrains Mono", monospace; letter-spacing: .08em; }
+    .label-left { left: -48px; top: 34px; }.label-right { right: -61px; bottom: 28px; }
+    .preview-caption { text-align: center; color: var(--muted); font-size: .68rem; }
+    .tabs-preview { background: linear-gradient(145deg, #f1eee8, #eae5dd); padding: .8rem 1rem; }
+    .dark .tabs-preview { background: linear-gradient(145deg, #211f1c, #29251f); }
+    .mini-window-bar { display: flex; align-items: center; gap: .3rem; padding-bottom: .65rem; border-bottom: 1px solid var(--line); color: var(--muted); }
+    .mini-window-bar > span { width: 6px; height: 6px; border-radius: 50%; background: #d78a77; }.mini-window-bar > span:nth-child(2) { background: #d7b76e; }.mini-window-bar > span:nth-child(3) { background: #87aa7f; }
+    .mini-window-bar b { margin-left: .4rem; font-size: .63rem; font-weight: 700; }.mini-window-bar i { margin-left: auto; font-size: 1rem; font-style: normal; }
+    .tab-search { margin: .6rem 0; border: 1px solid var(--line); border-radius: .5rem; background: var(--surface); padding: .4rem .55rem; color: var(--accent); font-size: .75rem; }
+    .tab-search span { margin-left: .25rem; color: var(--muted); font-size: .62rem; }
+    .tab-group + .tab-group { margin-top: .2rem; }
+    .tab-group-toggle { display: flex; width: 100%; align-items: center; gap: .35rem; border-radius: .4rem; padding: .3rem .4rem; color: var(--ink); text-align: left; font-size: .65rem; font-weight: 700; transition: background .2s; }
+    .tab-group-toggle:hover { background: var(--accent-soft); }.tab-group-toggle > span { color: var(--accent); transition: transform .2s; }.tab-group-toggle[aria-expanded="false"] > span { transform: rotate(-90deg); }
+    .tab-group-toggle small { margin-left: auto; color: var(--muted); font: 500 .58rem "JetBrains Mono", monospace; }
+    .tab-group-items { display: grid; gap: .15rem; padding: .1rem .35rem .25rem 1.3rem; color: var(--muted); font-size: .57rem; }
+    .tab-group-items.hidden { display: none; }
+    .queue-preview { background: linear-gradient(135deg, color-mix(in srgb, var(--accent-soft) 80%, var(--surface)), var(--paper-alt)); }
+    .queue-open { display: inline-flex; align-items: center; gap: .4rem; color: #4b8051; font-size: .53rem; font-weight: 700; }
+    .queue-counter { display: flex; flex-direction: column; align-items: center; margin-top: .75rem; }
+    .queue-counter > span, .queue-ticket > div > span { color: var(--muted); font: 600 .55rem "JetBrains Mono", monospace; letter-spacing: .1em; }
+    .queue-counter strong { color: var(--ink); font-size: 2.2rem; letter-spacing: -.08em; line-height: 1.05; }
+    .queue-counter small { margin-top: .2rem; color: var(--muted); font-size: .58rem; }
+    .queue-divider { display: flex; justify-content: space-around; margin: .55rem 0; border-top: 1px dashed color-mix(in srgb, var(--accent) 38%, var(--line)); }
+    .queue-divider span { width: 9px; height: 9px; margin-top: -.3rem; border-radius: 50%; background: var(--surface); }
+    .queue-ticket { display: flex; align-items: center; justify-content: space-between; }
+    .queue-ticket > div:first-child { display: flex; flex-direction: column; }.queue-ticket strong { color: var(--accent); font-size: 1.2rem; }
+    .wait-time { border-radius: 999px; background: var(--surface); padding: .38rem .55rem; color: var(--muted); font: 500 .58rem "JetBrains Mono", monospace; }
+    .join-queue { display: flex; width: 100%; align-items: center; justify-content: space-between; margin-top: .6rem; border-radius: .6rem; background: var(--accent); padding: .53rem .75rem; color: #fff; font-size: .65rem; font-weight: 700; transition: filter .2s, transform .2s; }
+    .join-queue:hover { filter: brightness(.94); transform: translateY(-1px); }
+    .queue-status, .vitals-status { margin-top: .35rem; color: var(--muted); text-align: center; font-size: .57rem; }
+    .queue-status.joined { color: #4b8051; font-weight: 700; }
+    .vitals-preview { background: linear-gradient(145deg, #edf1ec, #e4ebe4); }
+    .dark .vitals-preview { background: linear-gradient(145deg, #20251f, #252b25); }
+    .vitals-indicator { display: inline-flex; align-items: center; gap: .4rem; color: #4b8051; font-size: .53rem; }
+    .vitals-indicator i { width: .38rem; height: .38rem; }
+    .vitals-reading { display: flex; justify-content: space-between; margin-top: .85rem; }
+    .vitals-reading > div { display: flex; flex-direction: column; }.vitals-reading span, .vitals-footer > span { color: var(--muted); font: 500 .52rem "JetBrains Mono", monospace; letter-spacing: .05em; }
+    .vitals-reading strong { margin-top: .15rem; color: var(--ink); font-size: 1.15rem; }.vitals-reading strong small { padding-left: .2rem; color: var(--muted); font-size: .55rem; font-weight: 600; }
+    .heartbeat-svg { width: 100%; height: 48px; margin: .4rem 0; overflow: visible; }
+    .heartbeat-grid { fill: none; stroke: color-mix(in srgb, var(--muted) 15%, transparent); stroke-width: 1; }
+    .heartbeat-line { fill: none; stroke: #638e68; stroke-dasharray: 110 620; stroke-dashoffset: 0; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2.5; filter: drop-shadow(0 0 4px #6b9b7066); animation: heartbeat-draw 4s linear infinite; }
+    .vitals-footer { display: flex; align-items: center; justify-content: space-between; gap: .4rem; }
+    .alert-check { border: 1px solid color-mix(in srgb, #638e68 45%, var(--line)); border-radius: 999px; background: var(--surface); padding: .38rem .55rem; color: #4b8051; font-size: .56rem; font-weight: 700; transition: background .2s, color .2s; }
+    .alert-check[aria-pressed="true"] { background: #638e68; color: white; }
+    .vitals-preview.alert-active .heartbeat-line { stroke: var(--accent); filter: drop-shadow(0 0 5px color-mix(in srgb, var(--accent) 70%, transparent)); }
+    .vitals-preview.alert-active .vitals-indicator { color: var(--accent); }
+    .dialog-notes { display: grid; gap: .8rem; }
+    .dialog-notes .architecture-panel { padding: 1rem 1.1rem; }
+    .dialog-notes .architecture-panel > p { margin: 0; }
+    .dialog-notes .architecture-panel ul { margin-top: .65rem; }
+    .dialog-link:focus-visible, .dialog-close:focus-visible, .quick-inspect:focus-visible, .filter-btn:focus-visible, #projects button:focus-visible, #projects a:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 55%, transparent); outline-offset: 3px; }
+    @keyframes pipeline-dash { to { stroke-dashoffset: -24; } }
+    @keyframes electron-orbit { to { transform: rotate(360deg); } }
+    @keyframes heartbeat-draw { to { stroke-dashoffset: -730; } }
+    @media (min-width: 768px) { #project-grid.project-bento { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 767px) {
+      #projects .spotlight-card { grid-template-columns: minmax(0, 1fr); }
+      .pipeline-visual { min-height: 220px; }
+      .project-preview { min-height: 205px; }
+    }
+    @media (max-width: 420px) {
+      .pipeline-heading { align-items: flex-start; flex-direction: column; }
+      .pipeline-svg { width: 120%; max-width: none; margin-left: -10%; }
+      .project-preview { padding-right: .9rem; padding-left: .9rem; }
+      .tile-content { padding-right: 1rem; padding-left: 1rem; }
+      #projects .project-tile .quick-inspect { right: 1rem; }
+      .tile-content .project-top { align-items: flex-start; flex-direction: column; }
+    }
+    .form-input { border-color: #514a42; background: #1d1b19; }
+    footer { background-color: #141413 !important; }
+    footer .bg-indigo-600\/20 { background-color: #B86B4320 !important; }
+    .form-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }
+    @media (max-width: 767px) {
+      #home { padding-top: 7.5rem; }
+      .hero-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-portrait { width: min(78%, 340px); }
+      .hero-name { font-size: clamp(3rem, 15vw, 5rem); }
+      .project-card { min-height: 370px; }
+      .highlights-band { margin-inline: -1.25rem; }
+      .highlights-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .highlights-link { min-height: 3.75rem; padding-inline: .55rem; font-size: .72rem; }
+      .highlights-link + .highlights-link { border-left: 1px solid var(--line); }
+      .highlights-link:nth-child(odd) { border-left: 0; }
+      .highlights-link:nth-child(n+3) { border-top: 1px solid var(--line); }
+    }
+    @media (min-width: 1024px) { .highlights-band { margin-inline: -2rem; } }
+    :root:not(.dark) .project-card,
+    :root:not(.dark) .image-card,
+    :root:not(.dark) .skill-card {
+      border: 1px solid #DFD5C7 !important;
+      background: #FFFFFF !important;
+      box-shadow: 0 10px 28px -12px rgba(20, 20, 19, 0.08);
+    }
+    :root:not(.dark) .skill-card {
+      transition: border-color .2s, box-shadow .2s;
+    }
+    :root:not(.dark) #projects .project-card {
+      border: 1px solid #DFD5C7 !important;
+      background: #FFFFFF !important;
+    }
+    :root:not(.dark) #projects .project-card:hover,
+    :root:not(.dark) .image-card:hover,
+    :root:not(.dark) .skill-card:hover {
+      border-color: #C9B9A4 !important;
+      box-shadow: 0 14px 34px -12px rgba(20, 20, 19, 0.14);
+    }
+    :root:not(.dark) #projects .project-preview {
+      border-bottom: 1px solid #EAE2D6 !important;
+      background: #F8F4EE !important;
+    }
+    :root:not(.dark) #projects .pipeline-visual {
+      border-color: #EAE2D6 !important;
+      background: #F8F4EE !important;
+    }
+    .foundational-project-card {
+      border: 1px solid #D4DCCB !important;
+      background: #F3F5EF !important;
+      color: var(--ink);
+      transition: transform .2s, border-color .2s, box-shadow .2s;
+    }
+    #foundational-builds { border-color: var(--line) !important; background: var(--surface) !important; }
+    #foundational-builds #builds-chevron { border-color: var(--line) !important; }
+    .foundational-project-card:hover {
+      transform: translateY(-2px);
+      border-color: #AEB99B !important;
+      box-shadow: 0 12px 28px -18px rgba(76, 91, 62, .35);
+    }
+    .foundational-project-card a { color: #788565 !important; }
+    .foundational-project-card a:hover { color: #596746 !important; }
+    html.dark .foundational-project-card {
+      border-color: #343B30 !important;
+      background: #1D211B !important;
+    }
+    html.dark .foundational-project-card:hover {
+      border-color: #69775A !important;
+      box-shadow: 0 14px 30px -20px rgba(167, 183, 142, .35);
+    }
+    html.dark .foundational-project-card a { color: #A9B58F !important; }
+    html.dark .foundational-project-card a:hover { color: #C4D0A9 !important; }
+    .skill-matrix { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+    @media (min-width: 768px) { .skill-matrix { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    .skill-group { min-width: 0; border: 1px solid var(--line); border-radius: 1.25rem; background: var(--surface); padding: 1.15rem; box-shadow: 0 10px 28px -18px rgba(20, 20, 19, .16); }
+    .skill-group-title { display: flex; align-items: center; gap: .65rem; margin-bottom: 1rem; font-size: .98rem; font-weight: 750; letter-spacing: -.02em; }
+    .skill-group-mark { display: grid; width: 2rem; height: 2rem; flex: 0 0 auto; place-items: center; border-radius: .7rem; background: var(--accent-soft); color: var(--accent); font-family: "JetBrains Mono", monospace; font-size: .68rem; font-weight: 700; }
+    .skill-pill-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; }
+    .skill-pill { display: flex; min-width: 0; min-height: 3.45rem; align-items: center; gap: .55rem; border: 1px solid var(--line); border-radius: .9rem; background: var(--paper-alt); padding: .55rem .6rem; color: var(--ink); font-size: .69rem; font-weight: 650; line-height: 1.35; transition: transform .2s, border-color .2s, box-shadow .2s, background-color .2s; }
+    .skill-pill:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); background: var(--surface); box-shadow: 0 10px 22px -14px color-mix(in srgb, var(--accent) 55%, transparent); }
+    .skill-logo { position: relative; display: grid; width: 2rem; height: 2rem; flex: 0 0 auto; place-items: center; overflow: hidden; border: 1px solid color-mix(in srgb, var(--accent) 15%, var(--line)); border-radius: .65rem; background: color-mix(in srgb, var(--accent-soft) 55%, var(--surface)); color: var(--accent); }
+    .skill-logo img { display: none; width: 1.45rem; height: 1.45rem; object-fit: contain; }
+    .skill-logo.has-image img { display: block; }
+    .skill-logo-fallback { display: grid; min-width: 1.25rem; place-items: center; font-family: "JetBrains Mono", monospace; font-size: .57rem; font-weight: 700; letter-spacing: -.04em; }
+    .skill-logo.has-image .skill-logo-fallback { display: none; }
+    .skill-name { min-width: 0; }
+    #achievements .achievement-featured-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+    #achievements .achievement-card { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 1.35rem; background: var(--surface); padding: 1rem; box-shadow: 0 14px 36px -28px rgba(20, 20, 19, .32); transition: transform .22s, border-color .22s, box-shadow .22s; }
+    #achievements .achievement-card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 48%, var(--line)); box-shadow: 0 18px 38px -25px color-mix(in srgb, var(--accent) 30%, transparent); }
+    #achievements .achievement-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: .75rem; }
+    #achievements .achievement-rank { display: inline-flex; flex: 0 0 auto; align-items: center; border: 1px solid #D9B66E66; border-radius: 999px; background: linear-gradient(110deg, #F5E9C9, #F2DDD0); padding: .38rem .58rem; color: #7B4B27; font: 600 .55rem "JetBrains Mono", monospace; letter-spacing: .05em; }
+    html.dark #achievements .achievement-rank { border-color: #D9B66E55; background: linear-gradient(110deg, #49391F, #442A20); color: #E9C881; }
+    #achievements .achievement-card h3 { margin-top: .9rem; font-size: 1.05rem; font-weight: 750; letter-spacing: -.035em; line-height: 1.25; }
+    #achievements .achievement-card p { overflow: hidden; margin-top: .35rem; color: var(--muted); font-size: .73rem; line-height: 1.5; text-overflow: ellipsis; white-space: nowrap; }
+    #achievements .achievement-preview, #achievements .compact-preview { display: block; width: 100%; overflow: hidden; border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--line)); border-radius: 1rem; background: var(--paper-alt); padding: .625rem; text-align: left; }
+    #achievements .achievement-preview img { display: block; width: 100%; height: 190px; border-radius: .65rem; background: var(--surface); object-fit: contain; transition: transform .3s ease; }
+    #achievements .achievement-preview:hover img, #achievements .compact-preview:hover img, #certifications .certification-card:hover img { transform: scale(1.035); }
+    #achievements .wchl-previews { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .55rem; margin-top: .85rem; }
+    #achievements .wchl-previews .achievement-preview img { height: 132px; }
+    #achievements .wchl-previews .achievement-preview { padding: .45rem; }
+    #achievements .compact-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .9rem; }
+    #achievements .compact-card { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 1.15rem; background: var(--surface); transition: transform .22s, border-color .22s, box-shadow .22s; }
+    #achievements .compact-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 48%, var(--line)); box-shadow: 0 16px 34px -24px color-mix(in srgb, var(--accent) 35%, transparent); }
+    #achievements .compact-preview { border: 0; border-radius: 0; padding: .65rem .65rem 0; }
+    #achievements .compact-preview img { display: block; width: 100%; height: 125px; border-radius: .65rem; background: var(--surface); object-fit: contain; transition: transform .3s ease; }
+    #achievements .compact-copy { padding: .7rem .8rem .85rem; }
+    #achievements .compact-copy h3 { font-size: .78rem; font-weight: 750; line-height: 1.35; }
+    #achievements .category-tag, #certifications .domain-tag { display: inline-flex; align-items: center; border: 1px solid color-mix(in srgb, var(--accent) 27%, var(--line)); border-radius: 999px; background: var(--accent-soft); padding: .28rem .48rem; color: var(--accent); font: 600 .52rem "JetBrains Mono", monospace; letter-spacing: .035em; }
+    #achievements .category-tag { margin-top: .55rem; }
+    #certifications .certification-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .9rem; }
+    #certifications .certification-card { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 1.1rem; background: var(--surface); padding: .75rem; text-align: left; transition: transform .22s, border-color .22s, box-shadow .22s; }
+    #certifications .certification-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 48%, var(--line)); box-shadow: 0 16px 34px -24px color-mix(in srgb, var(--accent) 35%, transparent); }
+    #certifications .certification-meta { display: flex; min-height: 1.8rem; align-items: flex-start; justify-content: space-between; gap: .35rem; }
+    #certifications .issuer-badge { display: inline-flex; max-width: 58%; align-items: center; overflow: hidden; border: 1px solid var(--line); border-radius: .45rem; background: var(--paper-alt); padding: .3rem .42rem; color: var(--ink); font: 600 .52rem "JetBrains Mono", monospace; text-overflow: ellipsis; white-space: nowrap; }
+    #certifications .domain-tag { max-width: 55%; overflow: hidden; padding: .3rem .42rem; text-overflow: ellipsis; white-space: nowrap; }
+    #certifications .certification-frame { position: relative; overflow: hidden; margin-top: .6rem; border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--line)); border-radius: .85rem; background: var(--paper-alt); padding: .625rem; }
+    #certifications .certification-frame img { display: block; width: 100%; height: 132px; border-radius: .55rem; background: var(--surface); object-fit: contain; transition: transform .3s ease; }
+    #certifications .inspect-indicator { position: absolute; right: 1rem; bottom: 1rem; border: 1px solid #FFFFFF66; border-radius: 999px; background: #141413D9; padding: .38rem .58rem; color: #FAF8F5; font-size: .6rem; font-weight: 700; opacity: 0; transform: translateY(4px); transition: opacity .2s, transform .2s; }
+    #certifications .certification-card:hover .inspect-indicator, #certifications .certification-card:focus-visible .inspect-indicator { opacity: 1; transform: translateY(0); }
+    #certifications .certification-title { display: block; margin-top: .7rem; font-size: .73rem; font-weight: 750; line-height: 1.4; }
+    #achievements [data-category].hidden, #certifications [data-category].hidden { display: none; }
+    #achievements .filter-btn:focus-visible, #certifications .filter-btn:focus-visible, #achievements [data-image]:focus-visible, #certifications [data-image]:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 55%, transparent); outline-offset: 3px; }
+    @media (min-width: 640px) {
+      #achievements .achievement-featured-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.15rem; }
+      #achievements .achievement-featured-grid .achievement-card:first-child { grid-column: span 2; }
+      #achievements .achievement-featured-grid .achievement-card:first-child .achievement-preview img { height: 235px; }
+      #achievements .compact-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem; }
+      #certifications .certification-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem; }
+    }
+    @media (min-width: 1024px) {
+      #achievements .achievement-featured-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      #achievements .achievement-featured-grid .achievement-card:first-child { grid-column: auto; }
+      #achievements .achievement-featured-grid .achievement-card:first-child .achievement-preview img { height: 190px; }
+      #achievements .compact-gallery { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1rem; }
+      #certifications .certification-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 420px) {
+      #achievements .achievement-card-top { align-items: flex-start; flex-direction: column; }
+      #achievements .wchl-previews .achievement-preview img { height: 105px; }
+      #achievements .compact-preview img { height: 105px; }
+      #certifications .certification-card { padding: .55rem; }
+      #certifications .certification-frame img { height: 112px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-portrait, .project-card, .image-card { transform: none !important; }
+      #projects *, #projects *::before, #projects *::after, #achievements *, #achievements *::before, #achievements *::after, #certifications *, #certifications *::before, #certifications *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
   <script>
     const root = document.documentElement;
     const themeToggle = document.getElementById("theme-toggle");
@@ -377,6 +1143,55 @@
     const lightbox = document.getElementById("lightbox");
     const lightboxImage = document.getElementById("lightbox-image");
     const lightboxCaption = document.getElementById("lightbox-caption");
+    const projectDialog = document.getElementById("project-dialog");
+    const projectDetails = [
+      {
+        category: "APPLIED AI / NLP",
+        title: "Hybrid Fake News & Misinformation Detection",
+        summary: "A hybrid model that combines language understanding with conversation-graph context to classify misinformation in PHEME threads.",
+        problem: ["Posts in a fast-moving conversation need to be understood in context, not as isolated text.", "The model combines language signals with the relationships between posts in a PHEME thread."],
+        architecture: ["DistilBERT encodes post text into contextual embeddings.", "A Graph Convolutional Network propagates conversation context across connected posts.", "A fusion classifier combines both representations into a prediction."],
+        highlights: ["Hybrid text-and-graph approach for misinformation detection.", "Evaluated on PHEME: 96.2% accuracy and 94.79% F1-score."],
+        code: "https://github.com/AnnsuChoudhary/Fake-News-Misinformation-Detection-Platform"
+      },
+      {
+        category: "WEB · 3D · AI",
+        title: "StarLab Adventure — Virtual Science Lab",
+        summary: "An exploratory science experience that brings experiments into an interactive virtual lab.",
+        problem: ["Make science experiments approachable through an exploratory, interactive virtual lab."],
+        architecture: ["Three.js powers immersive 3D and AR-style lab experiences.", "Firebase Authentication and Firestore support sign-in and data.", "A Gemini-powered voice lab buddy uses the Web Speech API."],
+        highlights: ["Combines an interactive 3D experience with voice-based assistance.", "Connects Firebase services with browser speech capabilities."],
+        code: "https://github.com/AnnsuChoudhary/StarLab-Adventure",
+        live: "https://starlabadventure.netlify.app/"
+      },
+      {
+        category: "CHROME EXTENSION",
+        title: "Tab Manager",
+        summary: "A Manifest V3 extension for making crowded browser sessions easier to search, group, and restore.",
+        problem: ["Large browser sessions make it difficult to find related tabs and return to useful work."],
+        architecture: ["Manifest V3 extension groups tabs by domain and supports asynchronous search.", "Named sessions are persisted in local storage.", "Browser tab changes are reconciled with the saved extension state."],
+        highlights: ["Domain grouping and fast tab search.", "Two-way state reconciliation for dependable session management."],
+        code: "https://github.com/AnnsuChoudhary/Tab-Manager-Extension"
+      },
+      {
+        category: "CIVIC TECH",
+        title: "QLine — Smart Appointment & Queue Management",
+        summary: "A digital-first queue experience that helps people book appointments and join a line remotely.",
+        problem: ["In-person queues make it harder to plan appointments and understand when service is available."],
+        architecture: ["Appointment booking and digital queue tokens bring the visit flow into one experience.", "Token and queue status give users a clear view of their place in line."],
+        highlights: ["Digital queue token flow designed around remote participation.", "Queue status and estimated wait help clarify next steps."],
+        code: "https://github.com/AnnsuChoudhary/QLine"
+      },
+      {
+        category: "HEALTH TECH",
+        title: "TwinLife — Real-Time Health Tracker",
+        summary: "A health tracking experience focused on timely updates and access to emergency support.",
+        problem: ["Timely access to essential health updates and emergency support can be difficult to manage."],
+        architecture: ["A real-time health tracking experience surfaces important updates.", "Emergency alert features provide a route to timely support."],
+        highlights: ["Health information and emergency support in one experience.", "Vitals-focused interface designed for clear status at a glance."],
+        code: "https://github.com/AnnsuChoudhary/TwinLife"
+      }
+    ];
     let lastFocusedElement = null;
 
     function updateThemeButton() {
@@ -388,7 +1203,7 @@
     themeToggle.addEventListener("click", () => {
       root.classList.toggle("dark");
       try {
-        localStorage.setItem("portfolio-theme", root.classList.contains("dark") ? "dark" : "light");
+        localStorage.setItem("theme", root.classList.contains("dark") ? "dark" : "light");
       } catch (error) {
         console.warn("Unable to save the selected color theme.", error);
       }
@@ -411,9 +1226,9 @@
       }
     }));
 
-    document.querySelectorAll(".filter-btn").forEach((button) => {
+    document.querySelectorAll("#projects .filter-btn").forEach((button) => {
       button.addEventListener("click", () => {
-        document.querySelectorAll(".filter-btn").forEach((item) => {
+        document.querySelectorAll("#projects .filter-btn").forEach((item) => {
           const selected = item === button;
           item.classList.toggle("active", selected);
           item.setAttribute("aria-pressed", String(selected));
@@ -424,6 +1239,94 @@
         });
       });
     });
+
+    document.querySelectorAll("#achievements .filter-btn, #certifications .filter-btn").forEach((button) => {
+      button.addEventListener("click", () => {
+        const section = button.closest("section");
+        const filter = button.dataset.filter;
+        section.querySelectorAll(".filter-btn").forEach((item) => {
+          const selected = item === button;
+          item.classList.toggle("active", selected);
+          item.setAttribute("aria-pressed", String(selected));
+        });
+        section.querySelectorAll("[data-category]").forEach((card) => {
+          card.classList.toggle("hidden", filter !== "all" && !card.dataset.category.split(/\s+/).includes(filter));
+        });
+      });
+    });
+
+    document.querySelectorAll("#projects .project-card").forEach((card) => {
+      card.addEventListener("mousemove", (event) => {
+        const bounds = card.getBoundingClientRect();
+        card.style.setProperty("--mx", `${event.clientX - bounds.left}px`);
+        card.style.setProperty("--my", `${event.clientY - bounds.top}px`);
+      });
+    });
+
+    document.querySelectorAll(".tab-group-toggle").forEach((button) => {
+      button.addEventListener("click", () => {
+        const expanded = button.getAttribute("aria-expanded") !== "true";
+        button.setAttribute("aria-expanded", String(expanded));
+        document.getElementById(button.getAttribute("aria-controls")).classList.toggle("hidden", !expanded);
+      });
+    });
+
+    document.querySelector(".join-queue").addEventListener("click", (event) => {
+      const button = event.currentTarget;
+      const joined = button.getAttribute("aria-pressed") !== "true";
+      button.setAttribute("aria-pressed", String(joined));
+      button.innerHTML = joined ? "You're in the queue · #15 <span aria-hidden=\"true\">✓</span>" : "Join Digital Queue <span aria-hidden=\"true\">→</span>";
+      const status = document.querySelector(".queue-status");
+      status.textContent = joined ? "You're in. We'll keep your place." : "Skip the line. Keep your place.";
+      status.classList.toggle("joined", joined);
+    });
+
+    document.querySelector(".alert-check").addEventListener("click", (event) => {
+      const button = event.currentTarget;
+      const checked = button.getAttribute("aria-pressed") !== "true";
+      button.setAttribute("aria-pressed", String(checked));
+      button.textContent = checked ? "Reset Alert Check" : "Simulate Alert Check";
+      document.querySelector(".vitals-preview").classList.toggle("alert-active", checked);
+      document.querySelector(".vitals-indicator b").textContent = checked ? "CHECKED" : "STABLE";
+      document.querySelector(".vitals-status").textContent = checked ? "Alert check simulated · no alert triggered." : "All readings within range.";
+    });
+
+    document.querySelectorAll(".quick-inspect").forEach((button) => {
+      button.addEventListener("click", () => {
+        const project = projectDetails[Number(button.dataset.project)];
+        if (!project) {
+          console.error("Project details could not be found.", button.dataset.project);
+          return;
+        }
+        document.getElementById("project-dialog-category").textContent = project.category;
+        document.getElementById("project-dialog-title").textContent = project.title;
+        document.getElementById("project-dialog-summary").textContent = project.summary;
+        [["problem", project.problem], ["architecture", project.architecture], ["highlights", project.highlights]].forEach(([section, entries]) => {
+          const list = document.getElementById(`project-dialog-${section}`);
+          list.replaceChildren(...entries.map((entry) => {
+            const item = document.createElement("li");
+            item.textContent = entry;
+            return item;
+          }));
+        });
+        document.getElementById("project-dialog-code").href = project.code;
+        const liveLink = document.getElementById("project-dialog-live");
+        liveLink.classList.toggle("hidden", !project.live);
+        liveLink.href = project.live || "";
+        projectDialog.showModal();
+      });
+    });
+    document.querySelectorAll(".skill-logo img").forEach((logo) => {
+      const wrapper = logo.closest(".skill-logo");
+      if (!wrapper) return;
+      const updateLogo = () => wrapper.classList.toggle("has-image", logo.naturalWidth > 0);
+      if (logo.complete) updateLogo();
+      else {
+        logo.addEventListener("load", updateLogo, { once: true });
+        logo.addEventListener("error", updateLogo, { once: true });
+      }
+    });
+    document.getElementById("project-dialog-close").addEventListener("click", () => projectDialog.close());
 
     const buildsToggle = document.getElementById("builds-toggle");
     const buildsContent = document.getElementById("builds-content");
