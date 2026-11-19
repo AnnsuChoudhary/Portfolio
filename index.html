@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fc">
+  <meta name="description" content="Portfolio of Annsu Choudhary, a computer science (AI) undergraduate building web apps, intelligent models, and reliable systems.">
+  <title>Annsu Choudhary — Software Engineering • Web • Applied AI</title>
+  <script>
+    try {
+      if (localStorage.getItem("portfolio-theme") === "dark") {
+        document.documentElement.classList.add("dark");
+      }
+    } catch (error) {
+      // The page remains in light mode if browser storage is unavailable.
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: "class" };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: light; }
+    html.dark { color-scheme: dark; }
+    body { font-family: "Plus Jakarta Sans", sans-serif; }
+    .mono { font-family: "JetBrains Mono", monospace; }
+    .dot-grid {
+      background-image: radial-gradient(rgba(99, 102, 241, .19) 1px, transparent 1px);
+      background-size: 24px 24px;
+      mask-image: linear-gradient(to bottom, black 0%, transparent 90%);
+    }
+    .glass-nav { backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+    .timeline-line::before {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 10px;
+      bottom: 12px;
+      width: 1px;
+      background: linear-gradient(to bottom, #818cf8, #cbd5e1 82%, transparent);
+    }
+    .dark .timeline-line::before { background: linear-gradient(to bottom, #818cf8, #334155 82%, transparent); }
+    ::selection { background: #c7d2fe; color: #1e1b4b; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+  <header class="glass-nav fixed inset-x-0 top-0 z-40 border-b border-slate-200/70 bg-white/80 dark:border-slate-800/80 dark:bg-slate-950/80">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 lg:px-8" aria-label="Main navigation">
+      <a href="#home" class="flex items-center gap-2.5 font-bold tracking-tight" aria-label="Annsu Choudhary, home">
+        <span class="grid h-9 w-9 place-items-center rounded-xl bg-indigo-600 text-sm text-white">AC</span>
+        <span>Annsu Choudhary<span class="text-indigo-600">.</span></span>
+      </a>
+      <div id="nav-menu" class="absolute left-0 right-0 top-full hidden flex-col gap-1 border-b border-slate-200 bg-white p-4 shadow-lg dark:border-slate-800 dark:bg-slate-950 md:static md:flex md:flex-row md:items-center md:gap-6 md:border-0 md:bg-transparent md:p-0 md:shadow-none dark:md:bg-transparent">
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link" href="#experience">Experience</a>
+        <a class="nav-link" href="#open-source">Open source</a>
+        <a class="nav-link" href="#achievements">Achievements</a>
+        <a class="nav-link" href="#contact">Contact</a>
+        <a href="Annsu%20Sep%20Resume.pdf" download="Annsu_Choudhary_Resume.pdf" class="mt-2 inline-flex items-center justify-center rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700 md:mt-0">Resume <span aria-hidden="true" class="ml-2">↗</span></a>
+      </div>
+      <div class="ml-auto flex items-center gap-2 md:ml-5">
+        <button id="theme-toggle" type="button" class="grid h-10 w-10 place-items-center rounded-full border border-slate-200 text-lg transition hover:border-indigo-400 hover:text-indigo-600 dark:border-slate-700 dark:hover:text-indigo-300" aria-label="Switch to dark mode" title="Toggle color theme">
+          <span id="theme-icon" aria-hidden="true">☾</span>
+        </button>
+        <button id="menu-toggle" type="button" class="grid h-10 w-10 place-items-center rounded-full border border-slate-200 text-xl md:hidden dark:border-slate-700" aria-expanded="false" aria-controls="nav-menu" aria-label="Open navigation menu">
+          <span aria-hidden="true">☰</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="relative isolate overflow-hidden px-5 pb-20 pt-32 sm:pt-40 lg:px-8 lg:pb-24">
+      <div class="dot-grid absolute inset-x-0 top-0 -z-10 h-[680px]"></div>
+      <div class="absolute -right-32 top-28 -z-10 h-80 w-80 rounded-full bg-indigo-200/40 blur-3xl dark:bg-indigo-900/20"></div>
+      <div class="mx-auto max-w-7xl">
+        <div class="max-w-4xl">
+          <div class="mono mb-6 inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-white/80 px-4 py-2 text-[11px] font-medium uppercase tracking-[.12em] text-indigo-700 shadow-sm dark:border-indigo-900 dark:bg-slate-900/80 dark:text-indigo-300">
+            <span class="h-2 w-2 rounded-full bg-emerald-500"></span> Software Engineering <span class="text-slate-400">•</span> Web <span class="text-slate-400">•</span> Applied AI
+          </div>
+          <h1 class="max-w-4xl text-5xl font-extrabold leading-[1.07] tracking-[-.055em] text-slate-950 sm:text-6xl lg:text-7xl dark:text-white">Structured code.<br><span class="text-indigo-600 dark:text-indigo-400">Creative execution.</span></h1>
+          <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl dark:text-slate-300">Hi, I'm Annsu Choudhary—a CS (AI) undergrad who enjoys taking messy, real-world problems and shipping fast web apps, intelligent models, and reliable systems.</p>
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+            <a href="#projects" class="inline-flex items-center justify-center rounded-full bg-indigo-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-indigo-600/20 transition hover:-translate-y-0.5 hover:bg-indigo-700">Explore Projects <span aria-hidden="true" class="ml-2">↓</span></a>
+            <a href="Annsu%20Sep%20Resume.pdf" download="Annsu_Choudhary_Resume.pdf" class="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white/80 px-6 py-3.5 text-sm font-bold text-slate-800 transition hover:-translate-y-0.5 hover:border-indigo-400 dark:border-slate-700 dark:bg-slate-900/80 dark:text-white">Download Resume <span aria-hidden="true" class="ml-2">↗</span></a>
+            <a href="#contact" class="inline-flex items-center justify-center rounded-full px-5 py-3.5 text-sm font-bold text-slate-600 transition hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-300">Get in Touch <span aria-hidden="true" class="ml-2">→</span></a>
+          </div>
+          <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-slate-500 dark:text-slate-400" aria-label="Profile links">
+            <span class="mono text-xs uppercase tracking-widest">Find me on</span>
+            <a class="social-link" href="https://github.com/AnnsuChoudhary" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+            <a class="social-link" href="https://www.linkedin.com/in/annsu-choudhary-1b8775297" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+            <a class="social-link" href="https://leetcode.com/u/annsuchoudhary/" target="_blank" rel="noopener noreferrer">LeetCode <span aria-hidden="true">↗</span></a>
+            <a class="social-link" href="https://www.codechef.com/users/annsu" target="_blank" rel="noopener noreferrer">CodeChef <span aria-hidden="true">↗</span></a>
+            <a class="social-link" href="https://www.hackerrank.com/profile/annsuchoudhary21" target="_blank" rel="noopener noreferrer">HackerRank <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+
+        <div class="mt-16 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" aria-label="Highlights">
+          <article class="rounded-2xl border border-slate-200/80 bg-white/75 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/70">
+            <span class="mono text-xs text-indigo-600 dark:text-indigo-400">01 / RECOGNITION</span><p class="mt-3 font-semibold leading-6">Top 3 SheBuilds Hackathon &amp; Sponsor Track Winner</p>
+          </article>
+          <article class="rounded-2xl border border-slate-200/80 bg-white/75 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/70">
+            <span class="mono text-xs text-indigo-600 dark:text-indigo-400">02 / COMPETITION</span><p class="mt-3 font-semibold leading-6">World Computer Hackers League National Cleared &amp; Regionalist</p>
+          </article>
+          <article class="rounded-2xl border border-slate-200/80 bg-white/75 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/70">
+            <span class="mono text-xs text-indigo-600 dark:text-indigo-400">03 / COMMUNITY</span><p class="mt-3 font-semibold leading-6">Open Source Contributor <span class="text-sm font-normal text-slate-500 dark:text-slate-400">(ECSOC Top 500, ECWOC, GGSOC, NSOC)</span></p>
+          </article>
+          <article class="rounded-2xl border border-slate-200/80 bg-white/75 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/70">
+            <span class="mono text-xs text-indigo-600 dark:text-indigo-400">04 / PROBLEM SOLVING</span><p class="mt-3 font-semibold leading-6">700+ Algorithmic Problems Solved</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="px-5 py-20 lg:px-8 lg:py-28">
+      <div class="mx-auto max-w-7xl">
+        <div class="section-heading">
+          <p class="section-kicker">Selected work / 2025—2026</p>
+          <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div><h2 class="section-title">Projects that make<br class="hidden sm:block"> ideas useful.</h2><p class="mt-4 max-w-xl text-slate-500 dark:text-slate-400">A mix of applied AI, thoughtful web experiences, and small tools that solve real problems.</p></div>
+            <div class="flex flex-wrap gap-2" role="group" aria-label="Filter projects">
+              <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">All</button>
+              <button class="filter-btn" type="button" data-filter="ai" aria-pressed="false">Applied AI/ML</button>
+              <button class="filter-btn" type="button" data-filter="web" aria-pressed="false">Web &amp; Extensions</button>
+            </div>
+          </div>
+        </div>
+        <div id="project-grid" class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <article class="project-card group" data-category="ai">
+            <div class="project-top"><span class="project-index">01</span><span class="mono text-xs text-slate-400">FEB — APR 2026</span></div>
+            <div class="mt-8"><span class="project-tag">APPLIED AI / NLP</span><h3 class="project-title">Hybrid Fake News &amp; Misinformation Detection</h3><p class="project-copy">A hybrid DistilBERT + Graph Convolutional Network (GCN) model for PHEME threads, achieving 96.2% accuracy and 94.79% F1-score.</p></div>
+            <div class="project-bottom"><span class="mono text-xs text-slate-400">DistilBERT · GCN · PHEME</span><a class="icon-link" href="https://github.com/AnnsuChoudhary/Fake-News-Misinformation-Detection-Platform" target="_blank" rel="noopener noreferrer" aria-label="View Fake News Detection project repository">↗</a></div>
+          </article>
+          <article class="project-card group" data-category="web">
+            <div class="project-top"><span class="project-index">02</span><span class="mono text-xs text-slate-400">JUN — SEP 2025</span></div>
+            <div class="mt-8"><span class="project-tag">WEB · 3D · AI</span><h3 class="project-title">StarLab Adventure — Virtual Science Lab</h3><p class="project-copy">An interactive 3D/AR science lab with Firebase authentication and Firestore, plus a Gemini-powered voice lab buddy using Web Speech API.</p></div>
+            <div class="project-bottom gap-3"><span class="mono text-xs text-slate-400">Three.js · Firebase · Gemini</span><div class="flex gap-2"><a class="icon-link" href="https://starlabadventure.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Visit StarLab Adventure">↗</a><a class="icon-link" href="https://github.com/AnnsuChoudhary/StarLab-Adventure" target="_blank" rel="noopener noreferrer" aria-label="View StarLab Adventure repository">⌘</a></div></div>
+          </article>
+          <article class="project-card group" data-category="web">
+            <div class="project-top"><span class="project-index">03</span><span class="mono text-xs text-slate-400">AUG 2026</span></div>
+            <div class="mt-8"><span class="project-tag">CHROME EXTENSION</span><h3 class="project-title">Tab Manager</h3><p class="project-copy">A Manifest V3 extension with domain grouping, async tab search, named sessions in local storage, and two-way state reconciliation.</p></div>
+            <div class="project-bottom"><span class="mono text-xs text-slate-400">JavaScript · Chrome APIs</span><a class="icon-link" href="https://github.com/AnnsuChoudhary/Tab-Manager-Extension" target="_blank" rel="noopener noreferrer" aria-label="View Tab Manager repository">↗</a></div>
+          </article>
+          <article class="project-card group" data-category="web">
+            <div class="project-top"><span class="project-index">04</span><span class="mono text-xs text-slate-400">WEB APP</span></div>
+            <div class="mt-8"><span class="project-tag">CIVIC TECH</span><h3 class="project-title">QLine — Smart Appointment &amp; Queue Management</h3><p class="project-copy">Don't wait in line, join the line digitally. A digital token queue and appointment booking experience.</p></div>
+            <div class="project-bottom"><span class="mono text-xs text-slate-400">Appointments · Digital queue</span><a class="icon-link" href="https://github.com/AnnsuChoudhary/QLine" target="_blank" rel="noopener noreferrer" aria-label="View QLine repository">↗</a></div>
+          </article>
+          <article class="project-card group" data-category="web">
+            <div class="project-top"><span class="project-index">05</span><span class="mono text-xs text-slate-400">WEB APP</span></div>
+            <div class="mt-8"><span class="project-tag">HEALTH TECH</span><h3 class="project-title">TwinLife — Real-Time Health Tracker</h3><p class="project-copy">Real-time health tracking with emergency alert features, designed to make essential updates and timely support easier to access.</p></div>
+            <div class="project-bottom"><span class="mono text-xs text-slate-400">Health tracking · Emergency alerts</span><a class="icon-link" href="https://github.com/AnnsuChoudhary/TwinLife" target="_blank" rel="noopener noreferrer" aria-label="View TwinLife repository">↗</a></div>
+          </article>
+          <article class="project-card flex flex-col justify-between border-dashed bg-transparent dark:bg-transparent" data-category="all-only">
+            <div><span class="project-tag">BUILDING BLOCKS</span><h3 class="project-title mt-5">Small projects.<br>Useful foundations.</h3><p class="project-copy">A few foundational builds that sharpened my approach to data, interfaces, and object-oriented design.</p></div>
+            <a href="#foundational-builds" class="mt-8 inline-flex items-center text-sm font-bold text-indigo-600 hover:text-indigo-700 dark:text-indigo-400">See foundational builds <span class="ml-2">↓</span></a>
+          </article>
+        </div>
+        <div id="foundational-builds" class="mt-8 rounded-3xl border border-slate-200 bg-white p-5 sm:p-7 dark:border-slate-800 dark:bg-slate-900">
+          <button id="builds-toggle" class="flex w-full items-center justify-between gap-4 text-left" type="button" aria-expanded="false" aria-controls="builds-content">
+            <span><span class="mono text-xs uppercase tracking-wider text-indigo-600 dark:text-indigo-400">More projects</span><span class="mt-1 block text-lg font-bold">Show Internship &amp; Foundational Builds (3)</span></span><span id="builds-chevron" class="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-slate-200 text-xl dark:border-slate-700" aria-hidden="true">+</span>
+          </button>
+          <div id="builds-content" class="hidden">
+            <div class="mt-6 grid gap-4 md:grid-cols-3">
+              <article class="rounded-2xl bg-slate-50 p-5 dark:bg-slate-800/70"><h3 class="font-bold">Student Management System</h3><p class="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">Python CLI + Streamlit, OOP, JSON, and a Random Forest at-risk student classifier.</p><a class="mt-4 inline-block text-sm font-semibold text-indigo-600 hover:underline dark:text-indigo-400" href="https://github.com/AnnsuChoudhary/Student-Management-System" target="_blank" rel="noopener noreferrer">View repository ↗</a></article>
+              <article class="rounded-2xl bg-slate-50 p-5 dark:bg-slate-800/70"><h3 class="font-bold">Library Management System</h3><p class="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">Python, Streamlit, and SQLite with due-date tracking and exception handling.</p><a class="mt-4 inline-block text-sm font-semibold text-indigo-600 hover:underline dark:text-indigo-400" href="https://github.com/AnnsuChoudhary/Library-Management-System" target="_blank" rel="noopener noreferrer">View repository ↗</a></article>
+              <article class="rounded-2xl bg-slate-50 p-5 dark:bg-slate-800/70"><h3 class="font-bold">Bank Management System</h3><p class="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">An object-oriented learning project centered on core banking workflows.</p><a class="mt-4 inline-block text-sm font-semibold text-indigo-600 hover:underline dark:text-indigo-400" href="https://github.com/AnnsuChoudhary/Bank-Management-System" target="_blank" rel="noopener noreferrer">View repository ↗</a></article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="bg-white px-5 py-20 dark:bg-slate-900/40 lg:px-8 lg:py-28">
+      <div class="mx-auto max-w-7xl">
+        <div class="section-heading"><p class="section-kicker">Experience / education / skills</p><h2 class="section-title">Growing through<br>building and learning.</h2></div>
+        <div class="mt-12 grid gap-12 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <h3 class="mb-7 flex items-center gap-3 text-xl font-bold"><span class="grid h-10 w-10 place-items-center rounded-xl bg-indigo-100 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">↗</span>Experience</h3>
+            <div class="relative space-y-8 pl-7 timeline-line">
+              <article class="relative">
+                <span class="absolute -left-[27px] top-1.5 h-4 w-4 rounded-full border-4 border-indigo-200 bg-indigo-600 dark:border-indigo-950"></span>
+                <p class="mono text-xs text-indigo-600 dark:text-indigo-400">20 JUL — 19 AUG 2026 · REMOTE</p><h4 class="mt-2 text-lg font-bold">Python Development Intern</h4><p class="mt-1 text-sm font-medium text-slate-500 dark:text-slate-400">Kinetrexa Software Private Limited</p><p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">Built a Student Management System and a Library Management System, applying Python fundamentals, OOP, and data management.</p><p class="mono mt-2 text-[11px] text-slate-400">CERT ID: KTS00920260275</p>
+                <button class="certificate-button mt-4" type="button" data-image="Images/internship/Kinetrexa%20certificate%20of%20internship%20completion%20.png" data-caption="Python Development Intern — Kinetrexa Software Private Limited">View Certificate <span aria-hidden="true">↗</span></button>
+              </article>
+              <article class="relative">
+                <span class="absolute -left-[27px] top-1.5 h-4 w-4 rounded-full border-4 border-indigo-200 bg-indigo-600 dark:border-indigo-950"></span>
+                <p class="mono text-xs text-indigo-600 dark:text-indigo-400">06 JUL — 17 AUG 2026 · REMOTE</p><h4 class="mt-2 text-lg font-bold">Junior Software Developer Intern</h4><p class="mt-1 text-sm font-medium text-slate-500 dark:text-slate-400">YuvaIntern</p><p class="mono mt-2 text-[11px] text-slate-400">CERT ID: YI/2026/73344/285446</p>
+                <button class="certificate-button mt-4" type="button" data-image="Images/internship/Yuva%20Intern%20certificate%20of%20experience.png" data-caption="Junior Software Developer Intern — YuvaIntern">View Certificate <span aria-hidden="true">↗</span></button>
+              </article>
+            </div>
+          </div>
+          <div>
+            <h3 class="mb-7 flex items-center gap-3 text-xl font-bold"><span class="grid h-10 w-10 place-items-center rounded-xl bg-indigo-100 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">⌂</span>Education</h3>
+            <div class="relative space-y-7 pl-7 timeline-line">
+              <article class="relative"><span class="absolute -left-[27px] top-1.5 h-4 w-4 rounded-full border-4 border-indigo-200 bg-indigo-600 dark:border-indigo-950"></span><p class="mono text-xs text-indigo-600 dark:text-indigo-400">2023 — 2027</p><h4 class="mt-2 font-bold">B.Tech in CSE (AI)</h4><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Galgotias College of Engineering and Technology, Greater Noida</p><p class="mt-2 text-sm font-semibold">CGPA: 8.14/10</p></article>
+              <article class="relative"><span class="absolute -left-[27px] top-1.5 h-4 w-4 rounded-full border-4 border-indigo-200 bg-indigo-600 dark:border-indigo-950"></span><p class="mono text-xs text-indigo-600 dark:text-indigo-400">2021 — 2022</p><h4 class="mt-2 font-bold">Class XII (CBSE)</h4><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Kendriya Vidyalaya No. 2, Bhuj Cantt, Gujarat</p><p class="mt-2 text-sm font-semibold">87%</p></article>
+              <article class="relative"><span class="absolute -left-[27px] top-1.5 h-4 w-4 rounded-full border-4 border-indigo-200 bg-indigo-600 dark:border-indigo-950"></span><p class="mono text-xs text-indigo-600 dark:text-indigo-400">2019 — 2020</p><h4 class="mt-2 font-bold">Class X (CBSE)</h4><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Kendriya Vidyalaya, Sriganganagar Cantt, Rajasthan</p><p class="mt-2 text-sm font-semibold">86%</p></article>
+            </div>
+          </div>
+        </div>
+        <div class="mt-16">
+          <div class="mb-6 flex items-end justify-between"><div><p class="section-kicker">Tools I work with</p><h3 class="mt-2 text-2xl font-bold tracking-tight">Technical skills</h3></div><span class="mono hidden text-xs text-slate-400 sm:inline">LEARN · BUILD · ITERATE</span></div>
+          <div class="grid gap-4 md:grid-cols-3">
+            <article class="skill-card"><span class="skill-symbol">{ }</span><h4>Languages</h4><p>C++ · Java · Python · JavaScript</p></article>
+            <article class="skill-card"><span class="skill-symbol">⌘</span><h4>Web &amp; Cloud</h4><p>HTML5 · CSS3 · Firebase Auth &amp; Firestore · MySQL/SQLite · Spring Boot</p></article>
+            <article class="skill-card"><span class="skill-symbol">✳</span><h4>AI / ML</h4><p>PyTorch · PyTorch Geometric · Hugging Face Transformers · DistilBERT · GCN</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="open-source" class="px-5 py-20 lg:px-8 lg:py-28">
+      <div class="mx-auto max-w-7xl">
+        <div class="section-heading"><p class="section-kicker">Community / contribution</p><h2 class="section-title">Open source,<br>open possibilities.</h2><p class="mt-4 max-w-xl text-slate-500 dark:text-slate-400">Learning in public, contributing to communities, and celebrating the milestones along the way.</p></div>
+        <div class="certificate-grid mt-10">
+          <button class="image-card" type="button" data-image="Images/Open%20Source%20Program/ECSOC%20Top%20500%20certificate.jpeg" data-caption="ECSOC — Top 500 Certificate"><img src="Images/Open%20Source%20Program/ECSOC%20Top%20500%20certificate.jpeg" alt="ECSOC Top 500 certificate" loading="lazy"><span>ECSOC · Top 500</span></button>
+          <button class="image-card" type="button" data-image="Images/Open%20Source%20Program/ECSOC%20Badge.jpeg" data-caption="ECSOC Contributor Badge"><img src="Images/Open%20Source%20Program/ECSOC%20Badge.jpeg" alt="ECSOC badge" loading="lazy"><span>ECSOC · Badge</span></button>
+          <button class="image-card" type="button" data-image="Images/Open%20Source%20Program/ECWOC%202026.png" data-caption="ECWOC 2026"><img src="Images/Open%20Source%20Program/ECWOC%202026.png" alt="ECWOC 2026 certificate" loading="lazy"><span>ECWOC · 2026</span></button>
+          <button class="image-card" type="button" data-image="Images/Open%20Source%20Program/ECWOC%20Contributer%20id.jpeg" data-caption="ECWOC Contributor ID"><img src="Images/Open%20Source%20Program/ECWOC%20Contributer%20id.jpeg" alt="ECWOC contributor ID" loading="lazy"><span>ECWOC · Contributor ID</span></button>
+          <button class="image-card" type="button" data-image="Images/Open%20Source%20Program/GGSOC%202026.jpeg" data-caption="GGSOC 2026"><img src="Images/Open%20Source%20Program/GGSOC%202026.jpeg" alt="GGSOC 2026 certificate" loading="lazy"><span>GGSOC · 2026</span></button>
+          <button class="image-card" type="button" data-image="Images/Open%20Source%20Program/NSOC%20.png" data-caption="NSOC"><img src="Images/Open%20Source%20Program/NSOC%20.png" alt="NSOC certificate" loading="lazy"><span>NSOC</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="achievements" class="bg-white px-5 py-20 dark:bg-slate-900/40 lg:px-8 lg:py-28">
+      <div class="mx-auto max-w-7xl">
+        <div class="section-heading"><p class="section-kicker">Milestones / recognition</p><h2 class="section-title">A few moments<br>worth framing.</h2><p class="mt-4 max-w-xl text-slate-500 dark:text-slate-400">Hackathons, competitions, and challenges that pushed me to turn ideas into outcomes.</p></div>
+        <div class="certificate-grid mt-10">
+          <button class="image-card" type="button" data-image="Images/Achievements/SheBuilds%20Top%203.png" data-caption="SheBuilds — Top 3"><img src="Images/Achievements/SheBuilds%20Top%203.png" alt="SheBuilds Top 3 certificate" loading="lazy"><span>SheBuilds · Top 3</span></button>
+          <button class="image-card" type="button" data-image="Images/Achievements/WCHL%20Regional%20Qualified.png" data-caption="World Computer Hackers League — Regional Qualified"><img src="Images/Achievements/WCHL%20Regional%20Qualified.png" alt="WCHL Regional Qualified certificate" loading="lazy"><span>WCHL · Regional Qualified</span></button>
+          <button class="image-card" type="button" data-image="Images/Achievements/WCHL%20NAtional%20Qualified.png" data-caption="World Computer Hackers League — National Qualified"><img src="Images/Achievements/WCHL%20NAtional%20Qualified.png" alt="WCHL National Qualified certificate" loading="lazy"><span>WCHL · National Qualified</span></button>
+          <button class="image-card" type="button" data-image="Images/Achievements/Tech%20Jam%202.0.png" data-caption="Tech Jam 2.0"><img src="Images/Achievements/Tech%20Jam%202.0.png" alt="Tech Jam 2.0 certificate" loading="lazy"><span>Tech Jam 2.0</span></button>
+          <button class="image-card" type="button" data-image="Images/Achievements/Adobe%20Hackathon%20.png" data-caption="Adobe Hackathon"><img src="Images/Achievements/Adobe%20Hackathon%20.png" alt="Adobe Hackathon certificate" loading="lazy"><span>Adobe Hackathon</span></button>
+          <button class="image-card" type="button" data-image="Images/Achievements/Flipkart%20Runway%20season%205.png" data-caption="Flipkart Runway — Season 5"><img src="Images/Achievements/Flipkart%20Runway%20season%205.png" alt="Flipkart Runway Season 5 certificate" loading="lazy"><span>Flipkart Runway · Season 5</span></button>
+          <button class="image-card" type="button" data-image="Images/Achievements/Code%20for%20Bharat%20season%202.png" data-caption="Code for Bharat — Season 2"><img src="Images/Achievements/Code%20for%20Bharat%20season%202.png" alt="Code for Bharat Season 2 certificate" loading="lazy"><span>Code for Bharat · Season 2</span></button>
+          <button class="image-card" type="button" data-image="Images/Achievements/Frontend%20Battle%202.0.png" data-caption="Frontend Battle 2.0"><img src="Images/Achievements/Frontend%20Battle%202.0.png" alt="Frontend Battle 2.0 certificate" loading="lazy"><span>Frontend Battle 2.0</span></button>
+          <button class="image-card" type="button" data-image="Images/Achievements/Crave%20the%20code.png" data-caption="Crave the Code"><img src="Images/Achievements/Crave%20the%20code.png" alt="Crave the Code certificate" loading="lazy"><span>Crave the Code</span></button>
+          <button class="image-card" type="button" data-image="Images/Achievements/Unstop%20Treasure%20Hunt.png" data-caption="Unstop Treasure Hunt"><img src="Images/Achievements/Unstop%20Treasure%20Hunt.png" alt="Unstop Treasure Hunt certificate" loading="lazy"><span>Unstop Treasure Hunt</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications" class="px-5 py-20 lg:px-8 lg:py-28">
+      <div class="mx-auto max-w-7xl">
+        <div class="section-heading"><p class="section-kicker">Continuous learning</p><h2 class="section-title">Certifications.</h2><p class="mt-4 max-w-xl text-slate-500 dark:text-slate-400">A growing toolkit across cloud, AI, programming, and computer science fundamentals. Select any card to view it.</p></div>
+        <div class="certificate-grid mt-10">
+          <button class="image-card" type="button" data-image="Images/certification/AWS%20Generative%20Ai%20Foundations.png" data-caption="AWS — Generative AI Foundations"><img src="Images/certification/AWS%20Generative%20Ai%20Foundations.png" alt="AWS Generative AI Foundations certificate" loading="lazy"><span>AWS · Generative AI Foundations</span></button>
+          <button class="image-card" type="button" data-image="Images/certification/AWS%20cloud%20foundations.png" data-caption="AWS Cloud Foundations"><img src="Images/certification/AWS%20cloud%20foundations.png" alt="AWS Cloud Foundations certificate" loading="lazy"><span>AWS · Cloud Foundations</span></button>
+          <button class="image-card" type="button" data-image="Images/certification/IBM%20SkillsBuild%20Build%20with%20real%20world%20Ai.png" data-caption="IBM SkillsBuild — Build with Real World AI"><img src="Images/certification/IBM%20SkillsBuild%20Build%20with%20real%20world%20Ai.png" alt="IBM SkillsBuild Build with Real World AI certificate" loading="lazy"><span>IBM SkillsBuild · Real World AI</span></button>
+          <button class="image-card" type="button" data-image="Images/certification/Advance%20DSA.png" data-caption="Advanced DSA"><img src="Images/certification/Advance%20DSA.png" alt="Advanced DSA certificate" loading="lazy"><span>Advanced DSA</span></button>
+          <button class="image-card" type="button" data-image="Images/certification/Udemy%20Responsible%20AI.png" data-caption="Udemy — Responsible AI"><img src="Images/certification/Udemy%20Responsible%20AI.png" alt="Udemy Responsible AI certificate" loading="lazy"><span>Udemy · Responsible AI</span></button>
+          <button class="image-card" type="button" data-image="Images/certification/Java%20Oops%20certification.png" data-caption="Java OOPs Certification"><img src="Images/certification/Java%20Oops%20certification.png" alt="Java OOPs certificate" loading="lazy"><span>Java · OOPs</span></button>
+          <button class="image-card" type="button" data-image="Images/certification/python%20.png" data-caption="Python Certification"><img src="Images/certification/python%20.png" alt="Python certificate" loading="lazy"><span>Python</span></button>
+          <button class="image-card" type="button" data-image="Images/certification/HTML%20Advance.png" data-caption="Advanced HTML"><img src="Images/certification/HTML%20Advance.png" alt="Advanced HTML certificate" loading="lazy"><span>Advanced HTML</span></button>
+          <button class="image-card" type="button" data-image="Images/certification/DBMS%20part-1.png" data-caption="DBMS — Part 1"><img src="Images/certification/DBMS%20part-1.png" alt="DBMS Part 1 certificate" loading="lazy"><span>DBMS · Part 1</span></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="relative overflow-hidden bg-slate-950 px-5 py-20 text-white lg:px-8 lg:py-24">
+    <div class="absolute -right-24 -top-32 h-96 w-96 rounded-full bg-indigo-600/20 blur-3xl"></div>
+    <div class="relative mx-auto max-w-7xl">
+      <div class="grid gap-14 lg:grid-cols-[1.05fr_.95fr] lg:gap-20">
+        <div>
+          <p class="mono text-xs uppercase tracking-[.2em] text-indigo-300">Have a good problem?</p>
+          <h2 class="mt-5 max-w-xl text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">Let's make something that matters.</h2>
+          <p class="mt-5 max-w-lg leading-7 text-slate-400">Open to meaningful conversations, thoughtful collaborations, and opportunities to build useful things.</p>
+          <div class="mt-8 flex flex-wrap items-center gap-3">
+            <a class="text-lg font-semibold text-white underline decoration-indigo-500 decoration-2 underline-offset-8 hover:text-indigo-200" href="mailto:annsu2025@gmail.com">annsu2025@gmail.com</a>
+            <button id="copy-email" type="button" class="rounded-full border border-slate-700 px-4 py-2 text-sm font-semibold text-slate-300 transition hover:border-indigo-400 hover:text-white">Copy email</button>
+            <span id="copy-status" class="sr-only" aria-live="polite"></span>
+          </div>
+          <div class="mt-8 flex flex-wrap gap-x-5 gap-y-3 text-sm text-slate-400">
+            <a class="footer-link" href="https://github.com/AnnsuChoudhary" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a class="footer-link" href="https://www.linkedin.com/in/annsu-choudhary-1b8775297" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+            <a class="footer-link" href="https://leetcode.com/u/annsuchoudhary/" target="_blank" rel="noopener noreferrer">LeetCode ↗</a>
+            <a class="footer-link" href="https://www.codechef.com/users/annsu" target="_blank" rel="noopener noreferrer">CodeChef ↗</a>
+            <a class="footer-link" href="https://www.hackerrank.com/profile/annsuchoudhary21" target="_blank" rel="noopener noreferrer">HackerRank ↗</a>
+          </div>
+        </div>
+        <form id="contact-form" class="rounded-3xl border border-slate-800 bg-slate-900/75 p-6 sm:p-8">
+          <h3 class="text-xl font-bold">Send a message</h3>
+          <p class="mt-2 text-sm text-slate-400">This opens your email app with the message ready to send.</p>
+          <label class="form-label" for="contact-name">Name</label><input class="form-input" id="contact-name" name="name" autocomplete="name" required>
+          <label class="form-label" for="contact-subject">Subject</label><input class="form-input" id="contact-subject" name="subject" required>
+          <label class="form-label" for="contact-message">Message</label><textarea class="form-input min-h-32 resize-y" id="contact-message" name="message" required></textarea>
+          <button type="submit" class="mt-5 inline-flex w-full items-center justify-center rounded-full bg-indigo-500 px-5 py-3.5 text-sm font-bold text-white transition hover:bg-indigo-400">Open email draft <span aria-hidden="true" class="ml-2">↗</span></button>
+        </form>
+      </div>
+      <div class="mt-16 flex flex-col gap-3 border-t border-slate-800 pt-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+        <p>© <span id="current-year"></span> Annsu Choudhary. Built with curiosity and care.</p><a href="#home" class="transition hover:text-white">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/90 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="lightbox-caption">
+    <div class="relative flex max-h-[94vh] w-full max-w-6xl flex-col items-center">
+      <button id="lightbox-close" class="absolute -right-1 -top-12 grid h-10 w-10 place-items-center rounded-full border border-white/30 bg-slate-900 text-2xl text-white transition hover:bg-slate-700 sm:right-0" type="button" aria-label="Close image viewer">×</button>
+      <img id="lightbox-image" class="max-h-[80vh] max-w-full rounded-lg object-contain shadow-2xl" src="" alt="">
+      <p id="lightbox-caption" class="mt-4 text-center text-sm font-medium text-white"></p>
+    </div>
+  </div>
+
+  <style>
+    .nav-link { border-radius: .5rem; padding: .5rem .25rem; font-size: .82rem; font-weight: 600; color: #64748b; transition: color .2s; }
+    .nav-link:hover, .social-link:hover, .footer-link:hover { color: #6366f1; }
+    .dark .nav-link { color: #94a3b8; }
+    .dark .nav-link:hover { color: #a5b4fc; }
+    .social-link { font-weight: 600; transition: color .2s; }
+    .section-heading { max-width: 860px; }
+    .section-kicker { font-family: "JetBrains Mono", monospace; font-size: .7rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #6366f1; }
+    .dark .section-kicker { color: #a5b4fc; }
+    .section-title { margin-top: .8rem; font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.05; font-weight: 800; letter-spacing: -.055em; color: #0f172a; }
+    .dark .section-title { color: white; }
+    .filter-btn { border-radius: 9999px; border: 1px solid #e2e8f0; padding: .6rem 1rem; font-size: .8rem; font-weight: 700; color: #64748b; transition: all .2s; }
+    .dark .filter-btn { border-color: #334155; color: #cbd5e1; }
+    .filter-btn:hover, .filter-btn.active { border-color: #4f46e5; background: #4f46e5; color: white; }
+    .project-card { display: flex; min-height: 320px; flex-direction: column; justify-content: space-between; border: 1px solid #e2e8f0; border-radius: 1.5rem; background: white; padding: 1.5rem; transition: transform .2s, border-color .2s, box-shadow .2s; }
+    .project-card.hidden { display: none; }
+    .project-card:hover { transform: translateY(-4px); border-color: #a5b4fc; box-shadow: 0 18px 40px -28px rgba(79,70,229,.5); }
+    .dark .project-card { border-color: #1e293b; background: #0f172a; }
+    .dark .project-card:hover { border-color: #4f46e5; }
+    .project-top, .project-bottom { display: flex; align-items: center; justify-content: space-between; }
+    .project-index { font-family: "JetBrains Mono", monospace; font-size: .8rem; color: #818cf8; }
+    .project-tag { font-family: "JetBrains Mono", monospace; font-size: .63rem; font-weight: 600; letter-spacing: .1em; color: #6366f1; }
+    .dark .project-tag { color: #a5b4fc; }
+    .project-title { margin-top: .6rem; font-size: 1.2rem; line-height: 1.4; font-weight: 700; letter-spacing: -.02em; }
+    .project-copy { margin-top: .65rem; font-size: .875rem; line-height: 1.65; color: #64748b; }
+    .dark .project-copy { color: #94a3b8; }
+    .project-bottom { margin-top: 2rem; gap: .75rem; }
+    .icon-link { display: grid; height: 2.35rem; width: 2.35rem; flex-shrink: 0; place-items: center; border-radius: 9999px; background: #eef2ff; font-size: 1.05rem; font-weight: 700; color: #4f46e5; transition: background .2s, color .2s; }
+    .icon-link:hover { background: #4f46e5; color: white; }
+    .dark .icon-link { background: #1e1b4b; color: #c7d2fe; }
+    .dark .icon-link:hover { background: #4f46e5; color: white; }
+    .certificate-button { display: inline-flex; align-items: center; gap: .5rem; border-radius: 9999px; border: 1px solid #c7d2fe; padding: .55rem .9rem; font-size: .75rem; font-weight: 700; color: #4f46e5; transition: background .2s; }
+    .certificate-button:hover { background: #eef2ff; }
+    .dark .certificate-button { border-color: #3730a3; color: #c7d2fe; }
+    .dark .certificate-button:hover { background: #1e1b4b; }
+    .skill-card { border: 1px solid #e2e8f0; border-radius: 1.25rem; background: #f8fafc; padding: 1.4rem; }
+    .dark .skill-card { border-color: #1e293b; background: #0f172a; }
+    .skill-symbol { display: grid; height: 2.4rem; width: 2.4rem; place-items: center; border-radius: .75rem; background: #e0e7ff; font-family: "JetBrains Mono", monospace; font-size: .8rem; font-weight: 600; color: #4f46e5; }
+    .dark .skill-symbol { background: #1e1b4b; color: #c7d2fe; }
+    .skill-card h4 { margin-top: 1rem; font-weight: 700; }
+    .skill-card p { margin-top: .45rem; font-size: .85rem; line-height: 1.65; color: #64748b; }
+    .dark .skill-card p { color: #94a3b8; }
+    .certificate-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .9rem; }
+    @media (min-width: 640px) { .certificate-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.15rem; } }
+    @media (min-width: 1024px) { .certificate-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem; } }
+    #certifications .certificate-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (min-width: 640px) { #certifications .certificate-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    .image-card { overflow: hidden; border: 1px solid #e2e8f0; border-radius: 1rem; background: white; text-align: left; transition: transform .2s, border-color .2s, box-shadow .2s; }
+    .image-card:hover { transform: translateY(-3px); border-color: #a5b4fc; box-shadow: 0 12px 30px -20px rgba(79,70,229,.55); }
+    .dark .image-card { border-color: #1e293b; background: #0f172a; }
+    .image-card img { display: block; width: 100%; height: 132px; object-fit: cover; background: #e2e8f0; }
+    @media (min-width: 640px) { .image-card img { height: 155px; } }
+    .image-card span { display: block; padding: .75rem .85rem; font-size: .77rem; font-weight: 700; line-height: 1.4; }
+    .form-label { display: block; margin-top: 1.1rem; margin-bottom: .45rem; font-size: .78rem; font-weight: 600; color: #cbd5e1; }
+    .form-input { display: block; width: 100%; border: 1px solid #334155; border-radius: .8rem; background: #020617; padding: .8rem .9rem; font-size: .9rem; color: white; outline: none; transition: border-color .2s, box-shadow .2s; }
+    .form-input:focus { border-color: #818cf8; box-shadow: 0 0 0 3px rgba(129,140,248,.18); }
+    .footer-link { transition: color .2s; }
+  </style>
+  <script>
+    const root = document.documentElement;
+    const themeToggle = document.getElementById("theme-toggle");
+    const themeIcon = document.getElementById("theme-icon");
+    const menuToggle = document.getElementById("menu-toggle");
+    const navMenu = document.getElementById("nav-menu");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightbox-image");
+    const lightboxCaption = document.getElementById("lightbox-caption");
+    let lastFocusedElement = null;
+
+    function updateThemeButton() {
+      const isDark = root.classList.contains("dark");
+      themeIcon.textContent = isDark ? "☀" : "☾";
+      themeToggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+    }
+    updateThemeButton();
+    themeToggle.addEventListener("click", () => {
+      root.classList.toggle("dark");
+      try {
+        localStorage.setItem("portfolio-theme", root.classList.contains("dark") ? "dark" : "light");
+      } catch (error) {
+        console.warn("Unable to save the selected color theme.", error);
+      }
+      updateThemeButton();
+    });
+
+    menuToggle.addEventListener("click", () => {
+      const open = menuToggle.getAttribute("aria-expanded") !== "true";
+      menuToggle.setAttribute("aria-expanded", String(open));
+      menuToggle.setAttribute("aria-label", open ? "Close navigation menu" : "Open navigation menu");
+      navMenu.classList.toggle("hidden", !open);
+      navMenu.classList.toggle("flex", open);
+    });
+    navMenu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
+      if (window.matchMedia("(max-width: 767px)").matches) {
+        navMenu.classList.add("hidden");
+        navMenu.classList.remove("flex");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+      }
+    }));
+
+    document.querySelectorAll(".filter-btn").forEach((button) => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".filter-btn").forEach((item) => {
+          const selected = item === button;
+          item.classList.toggle("active", selected);
+          item.setAttribute("aria-pressed", String(selected));
+        });
+        const filter = button.dataset.filter;
+        document.querySelectorAll("#project-grid .project-card[data-category]").forEach((card) => {
+          card.classList.toggle("hidden", filter !== "all" && card.dataset.category !== filter);
+        });
+      });
+    });
+
+    const buildsToggle = document.getElementById("builds-toggle");
+    const buildsContent = document.getElementById("builds-content");
+    buildsToggle.addEventListener("click", () => {
+      const open = buildsToggle.getAttribute("aria-expanded") !== "true";
+      buildsToggle.setAttribute("aria-expanded", String(open));
+      buildsContent.classList.toggle("hidden", !open);
+      document.getElementById("builds-chevron").textContent = open ? "−" : "+";
+      buildsToggle.querySelector(".block").textContent = open ? "Hide Internship & Foundational Builds (3)" : "Show Internship & Foundational Builds (3)";
+    });
+
+    function openLightbox(imagePath, caption) {
+      lastFocusedElement = document.activeElement;
+      lightboxImage.src = imagePath;
+      lightboxImage.alt = caption;
+      lightboxCaption.textContent = caption;
+      lightbox.classList.remove("hidden");
+      lightbox.classList.add("flex");
+      document.body.classList.add("overflow-hidden");
+      document.getElementById("lightbox-close").focus();
+    }
+    function closeLightbox() {
+      if (lightbox.classList.contains("hidden")) return;
+      lightbox.classList.add("hidden");
+      lightbox.classList.remove("flex");
+      lightboxImage.src = "";
+      document.body.classList.remove("overflow-hidden");
+      if (lastFocusedElement) lastFocusedElement.focus();
+    }
+    document.querySelectorAll("[data-image][data-caption]").forEach((item) => {
+      item.addEventListener("click", () => openLightbox(item.dataset.image, item.dataset.caption));
+    });
+    document.getElementById("lightbox-close").addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeLightbox();
+        if (menuToggle.getAttribute("aria-expanded") === "true") menuToggle.click();
+      }
+    });
+
+    document.getElementById("copy-email").addEventListener("click", async (event) => {
+      const status = document.getElementById("copy-status");
+      try {
+        await navigator.clipboard.writeText("annsu2025@gmail.com");
+        event.currentTarget.textContent = "Copied!";
+        status.textContent = "Email address copied.";
+      } catch (error) {
+        status.textContent = "Could not copy automatically. Email: annsu2025@gmail.com";
+        console.warn("Unable to copy the email address.", error);
+      }
+      window.setTimeout(() => { event.currentTarget.textContent = "Copy email"; }, 1800);
+    });
+    document.getElementById("contact-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const formData = new FormData(event.currentTarget);
+      const subject = String(formData.get("subject")).trim();
+      const body = `Hi, I'm ${String(formData.get("name")).trim()}.\n\n${String(formData.get("message")).trim()}`;
+      window.location.href = `mailto:annsu2025@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+    document.getElementById("current-year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
